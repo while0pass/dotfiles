@@ -1,0 +1,4 @@
+ManualMode Yes
+AddBind ChangeWord Pause
+AddBind ChangeSelected Shift Pause
+RotateLayoutAfterChangeSelectedMode Yes
