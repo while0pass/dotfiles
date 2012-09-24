@@ -1,0 +1,37 @@
+set nocompatible " vi incompatible mode
+set encoding=UTF-8
+set nu " line numbering is on
+set wrap " line wrap
+set lbr  " by word (not by charcter as by default)
+set tabstop=4 " tab width measured in spaces
+set shiftwidth=4
+set autoindent
+set expandtab
+" displaying tab characters and trailing spaces
+" with special characters \u2592\u2591 and \u2593
+" They also may be '>-' and '@':
+" :set listchars=tab:>-,trail:@
+set lcs=tab:▒░,trail:▓
+set list
+
+set fo=tcq1
+set hlsearch " highlighting results while searching
+
+syntax on " syntax highlighting
+colorscheme desert
+
+set path+=~/repogitories
+
+" GUI
+set guifont=DejaVu\ Sans\ Mono\ 12
+
+" VUNDLE
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+Bundle 'godlygeek/csapprox'
+
+filetype plugin indent on
+" VUNDLE END
