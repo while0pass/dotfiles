@@ -32,6 +32,7 @@ call vundle#rc()
 
 Bundle 'gmarik/vundle'
 Bundle 'godlygeek/csapprox'
+Bundle 'SirVer/ultisnips'
 
 filetype plugin indent on
 " VUNDLE END
