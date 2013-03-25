@@ -8,6 +8,7 @@ set tabstop=4 " tab width measured in spaces
 set shiftwidth=4
 set autoindent
 set expandtab
+set colorcolumn=79
 " displaying tab characters and trailing spaces
 " with special characters \u2592\u2591 and \u2593
 " They also may be '>-' and '@':
@@ -18,8 +19,7 @@ set list
 set fo=tcq1
 set hlsearch " highlighting results while searching
 
-syntax on " syntax highlighting
-colorscheme desert
+set grepprg=ack-grep
 
 set path+=~/repogitories
 
@@ -32,16 +32,29 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
-Bundle 'godlygeek/csapprox'
 Bundle 'SirVer/ultisnips'
 Bundle 'scrooloose/nerdtree'
+
+Bundle 'godlygeek/csapprox'
 Bundle 'vim-scripts/wombat256.vim'
+Bundle 'altercation/vim-colors-solarized'
 
 filetype plugin indent on
 " VUNDLE END
 
 " Russian to English key mapping
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
+
+" colors
+syntax on " syntax highlighting
+syntax enable
+let g:solarized_termcolors=256
+let g:solarized_bold=1
+let g:solarized_italic=1
+let g:solarized_underline=1
+let g:solarized_contrast="high"
+set background=light
+colorscheme solarized "desert
 
 " NURDTREE
 let NERDTreeIgnore=['\.pyc$', '\~$']
