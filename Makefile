@@ -1,6 +1,7 @@
 install: \
     install-vim \
     install-xneur \
+	install-pips \
     install-ipython
 
 install-vim:
@@ -20,3 +21,6 @@ install-ipython:
 	rm -fr ~/.ipython/profile_default/ipython_config.py
 	ipython profile create
 	patch ~/.ipython/profile_default/ipython_config.py < ipython/ipython_config.patch
+
+install-pips:
+	sudo pip install -U -r packages/pip.list
