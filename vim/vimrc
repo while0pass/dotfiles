@@ -63,3 +63,8 @@ colorscheme solarized "desert
 " NURDTREE
 let NERDTreeIgnore=['\.pyc$', '\~$']
 " NURDTREE END
+
+" directory where the swap files are stored
+set dir=~/.vim/temp/,$HOME/Local\ Settings/Temp
+" directory where the backup files are stored
+set backupdir=~/.vim/temp/,$HOME/Local\ Settings/Temp

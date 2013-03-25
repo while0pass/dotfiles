@@ -9,6 +9,7 @@ install-vim:
 	ln -s `pwd`/vim ~/.vim
 	ln -s ~/.vim/vimrc ~/.vimrc
 	ln -s ~/.vim/ctags ~/.ctags
+	mkdir -p vim/temp/
 	vi +BundleInstall! +BundleClean +qa
 
 install-xneur:
