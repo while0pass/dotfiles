@@ -23,6 +23,10 @@ set grepprg=ack-grep
 
 set path+=~/repogitories
 
+"some stuff to get the mouse going in term
+set mouse=a
+set ttymouse=xterm2
+
 " GUI
 set guifont=DejaVu\ Sans\ Mono\ 12
 
