@@ -24,4 +24,4 @@ install-ipython:
 	patch ~/.ipython/profile_default/ipython_config.py < ipython/ipython_config.patch
 
 install-pips:
-	sudo pip install -U -r packages/pip.list
+	sudo pip install -r packages/pip.list
