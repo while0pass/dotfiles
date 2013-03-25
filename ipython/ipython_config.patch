@@ -1,0 +1,14 @@
+41c41,44
+< # c.InteractiveShellApp.extensions = []
+---
+> c.InteractiveShellApp.extensions = [
+>     'line_profiler_ext',
+>     'memory_profiler_ext',
+> ]
+117c120,123
+< # c.TerminalIPythonApp.extensions = []
+---
+> c.TerminalIPythonApp.extensions = [
+>     'line_profiler_ext',
+>     'memory_profiler_ext',
+> ]

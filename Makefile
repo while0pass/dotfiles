@@ -1,6 +1,7 @@
 install: \
     install-vim \
-    install-xneur
+    install-xneur \
+    install-ipython
 
 install-vim:
 	rm -rf ~/.vim ~/.vimrc ~/.ctags
@@ -12,3 +13,10 @@ install-vim:
 install-xneur:
 	rm -fr ~/.xneur
 	ln -s `pwd`/xneur ~/.xneur
+
+install-ipython:
+	rm -fr ~/.ipython/extensions
+	ln -s `pwd`/ipython/extensions ~/.ipython/extensions
+	rm -fr ~/.ipython/profile_default/ipython_config.py
+	ipython profile create
+	patch ~/.ipython/profile_default/ipython_config.py < ipython/ipython_config.patch
