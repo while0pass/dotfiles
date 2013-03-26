@@ -70,3 +70,6 @@ let NERDTreeIgnore=['\.pyc$', '\~$']
 set dir=~/.vim/temp/,$HOME/Local\ Settings/Temp
 " directory where the backup files are stored
 set backupdir=~/.vim/temp/,$HOME/Local\ Settings/Temp
+
+autocmd vimenter * if !argc() | NERDTree | endif
+map <C-n> :NERDTreeToggle<CR>
