@@ -1,7 +1,6 @@
 install: \
     install-vim \
     install-xneur \
-	install-pips \
     install-ipython
 
 install-vim:
