@@ -42,6 +42,8 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'godlygeek/csapprox'
 Bundle 'vim-scripts/wombat256.vim'
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'fugalh/desert.vim'
+Bundle 'chriskempson/vim-tomorrow-theme'
 
 filetype plugin indent on
 " VUNDLE END
