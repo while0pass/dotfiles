@@ -38,6 +38,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'SirVer/ultisnips'
 Bundle 'scrooloose/nerdtree'
+Bundle 'tpope/vim-surround'
 
 Bundle 'godlygeek/csapprox'
 Bundle 'vim-scripts/wombat256.vim'
