@@ -1,5 +1,6 @@
 install: \
     install-vim \
+    install-tmux \
     install-xneur \
     install-ipython
 
@@ -10,6 +11,10 @@ install-vim:
 	ln -s ~/.vim/ctags ~/.ctags
 	mkdir -p vim/temp/
 	vi +BundleInstall! +BundleClean +qa
+
+install-tmux:
+	rm -fr ~/.tmux.conf
+	ln -s `pwd`/tmux/tmux.conf ~/.tmux.conf
 
 install-xneur:
 	rm -fr ~/.xneur
