@@ -2,7 +2,8 @@ install: \
     vim \
     tmux \
     xneur \
-    ipython
+    ipython \
+  
 
 vim:
 	rm -rf ~/.vim ~/.vimrc ~/.ctags
@@ -29,3 +30,11 @@ ipython:
 
 pips:
 	sudo pip install -r packages/pip.list
+
+.PHONY: \
+    vim \
+    tmux \
+    xneur \
+    ipython \
+    pips \
+  
