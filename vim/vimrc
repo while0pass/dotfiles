@@ -8,7 +8,7 @@ set tabstop=4 " tab width measured in spaces
 set shiftwidth=4
 set autoindent
 set expandtab
-set colorcolumn=79
+set colorcolumn=81
 " displaying tab characters and trailing spaces
 " with special characters \u2592\u2591 and \u2593
 " They also may be '>-' and '@':
