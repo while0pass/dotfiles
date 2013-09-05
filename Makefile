@@ -3,6 +3,7 @@ install: \
     tmux \
     xneur \
     ipython \
+	liquidprompt \
   
 
 vim:
@@ -28,6 +29,12 @@ ipython:
 	ipython profile create
 	patch ~/.ipython/profile_default/ipython_config.py < ipython/ipython_config.patch
 
+liquidprompt:
+	rm -fr ~/.liquidprompt
+	git clone --depth=1 https://github.com/nojhan/liquidprompt.git ~/.liquidprompt
+	cp ~/.liquidprompt/liquidpromptrc-dist ~/.config/liquidpromptrc
+	if ! grep liquidprompt ~/.bashrc ; then echo "source ~/.liquidprompt/liquidprompt" >> ~/.bashrc ; fi
+
 pips:
 	sudo pip install -r packages/pip.list
 
@@ -36,5 +43,6 @@ pips:
     tmux \
     xneur \
     ipython \
+	liquidprompt \
     pips \
   
