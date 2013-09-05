@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<gconf>
+	<entry name="model" mtime="1318622757" type="string">
+		<stringvalue>pc105</stringvalue>
+	</entry>
+	<entry name="options" mtime="1348873637" type="list" ltype="string">
+		<li type="string">
+			<stringvalue>ctrl	ctrl:swapcaps</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>grp	grp:shifts_toggle</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>compat	misc:typo</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>grp_led	grp_led:scroll</stringvalue>
+		</li>
+	</entry>
+	<entry name="layouts" mtime="1318622757" type="list" ltype="string">
+		<li type="string">
+			<stringvalue>us</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>ru</stringvalue>
+		</li>
+	</entry>
+</gconf>
