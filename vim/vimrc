@@ -39,6 +39,7 @@ Bundle 'gmarik/vundle'
 Bundle 'SirVer/ultisnips'
 Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-surround'
+Bundle 'Lokaltog/powerline'
 
 Bundle 'godlygeek/csapprox'
 Bundle 'vim-scripts/wombat256.vim'
@@ -48,6 +49,10 @@ Bundle 'chriskempson/vim-tomorrow-theme'
 
 filetype plugin indent on
 " VUNDLE END
+
+" POWERLINE
+set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+" POWERLINE END
 
 " Russian to English key mapping
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
