@@ -50,6 +50,13 @@ Bundle 'chriskempson/vim-tomorrow-theme'
 filetype plugin indent on
 " VUNDLE END
 
+" NERDTREE
+let NERDTreeIgnore=['\.pyc$', '\~$']
+" Боковое окно с Nerdtree, если vim запущен без аргументов
+autocmd vimenter * if !argc() | NERDTree | endif
+map <C-n> :NERDTreeToggle<CR>
+" NERDTREE END
+
 " POWERLINE
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 " POWERLINE END
@@ -68,14 +75,7 @@ let g:solarized_contrast="high"
 set background=light
 colorscheme solarized "desert
 
-" NURDTREE
-let NERDTreeIgnore=['\.pyc$', '\~$']
-" NURDTREE END
-
 " directory where the swap files are stored
 set dir=~/.vim/temp/,$HOME/Local\ Settings/Temp
 " directory where the backup files are stored
 set backupdir=~/.vim/temp/,$HOME/Local\ Settings/Temp
-
-autocmd vimenter * if !argc() | NERDTree | endif
-map <C-n> :NERDTreeToggle<CR>
