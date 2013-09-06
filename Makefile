@@ -48,9 +48,11 @@ pips:
 	sudo pip install -r packages/pip.list
 
 gconf:
+	[[ -d ~/.gconf/apps/gnome-terminal ]] || mkdir -p ~/.gconf/apps/gnome-terminal
 	[[ -d ~/.gconf/apps/gnome-terminal.bak ]] || cp -R ~/.gconf/apps/gnome-terminal{,.bak}
 	rm -fr ~/.gconf/apps/gnome-terminal
 	ln -s `pwd`/gconf/apps/gnome-terminal ~/.gconf/apps/gnome-terminal
+	[[ -d ~/.gconf/desktop/gnome/peripherals/keyboard/kbd ]] || mkdir -p ~/.gconf/desktop/gnome/peripherals/keyboard/kbd
 	[[ -d ~/.gconf/desktop/gnome/peripherals/keyboard/kbd.bak ]] || cp -R ~/.gconf/desktop/gnome/peripherals/keyboard/kbd{,.bak}
 	rm -fr ~/.gconf/desktop/gnome/peripherals/keyboard/kbd
 	ln -s `pwd`/gconf/desktop/gnome/peripherals/keyboard/kbd ~/.gconf/desktop/gnome/peripherals/keyboard/kbd
