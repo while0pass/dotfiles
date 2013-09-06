@@ -7,7 +7,7 @@ install: \
     xneur \
     ipython \
     liquidprompt \
-	gconf
+    gconf
   
 
 git:
@@ -48,10 +48,10 @@ pips:
 	sudo pip install -r packages/pip.list
 
 gconf:
-	if [ ! -d ~/.gconf/apps/gnome-terminal.bak ]; then cp -R ~/.gconf/apps/gnome-terminal{,.bak}; fi
+	[[ -d ~/.gconf/apps/gnome-terminal.bak ]] || cp -R ~/.gconf/apps/gnome-terminal{,.bak}
 	rm -fr ~/.gconf/apps/gnome-terminal
 	ln -s `pwd`/gconf/apps/gnome-terminal ~/.gconf/apps/gnome-terminal
-	if [ ! -d ~/.gconf/desktop/gnome/peripherals/keyboard/kbd.bak ]; then cp -R ~/.gconf/desktop/gnome/peripherals/keyboard/kbd{,.bak}; fi
+	[[ -d ~/.gconf/desktop/gnome/peripherals/keyboard/kbd.bak ]] || cp -R ~/.gconf/desktop/gnome/peripherals/keyboard/kbd{,.bak}
 	rm -fr ~/.gconf/desktop/gnome/peripherals/keyboard/kbd
 	ln -s `pwd`/gconf/desktop/gnome/peripherals/keyboard/kbd ~/.gconf/desktop/gnome/peripherals/keyboard/kbd
 
@@ -63,5 +63,5 @@ gconf:
     ipython \
     liquidprompt \
     pips \
-	gconf \
+    gconf \
   
