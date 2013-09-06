@@ -1,6 +1,7 @@
 SHELL := /bin/bash
 
 install: \
+    git \
     vim \
     tmux \
     xneur \
@@ -8,6 +9,10 @@ install: \
     liquidprompt \
 	gconf
   
+
+git:
+	rm -fr ~/.config/git
+	ln -s `pwd`/git ~/.config/git
 
 vim:
 	rm -rf ~/.vim ~/.vimrc ~/.ctags
@@ -51,6 +56,7 @@ gconf:
 	ln -s `pwd`/gconf/desktop/gnome/peripherals/keyboard/kbd ~/.gconf/desktop/gnome/peripherals/keyboard/kbd
 
 .PHONY: \
+    git \
     vim \
     tmux \
     xneur \
