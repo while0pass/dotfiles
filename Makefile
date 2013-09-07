@@ -1,6 +1,7 @@
 SHELL := /bin/bash
 
 install: \
+    bash \
     git \
     vim \
     tmux \
@@ -9,6 +10,13 @@ install: \
     liquidprompt \
     gconf
   
+bash:
+	if ! grep dotfiles ~/.bashrc ; \
+	then \
+		echo >> ~/.bashrc ;\
+		echo "# My settings from dotfiles" >> ~/.bashrc; \
+		echo "source $(pwd)/bash/bashrc" >> ~/.bashrc ; \
+	fi
 
 git:
 	rm -fr ~/.config/git
@@ -42,7 +50,6 @@ liquidprompt:
 	rm -fr ~/.liquidprompt
 	git clone --depth=1 https://github.com/nojhan/liquidprompt.git ~/.liquidprompt
 	cp ~/.liquidprompt/liquidpromptrc-dist ~/.config/liquidpromptrc
-	if ! grep liquidprompt ~/.bashrc ; then echo "source ~/.liquidprompt/liquidprompt" >> ~/.bashrc ; fi
 
 pips:
 	sudo pip install -r packages/pip.list
@@ -58,6 +65,7 @@ gconf:
 	ln -s `pwd`/gconf/desktop/gnome/peripherals/keyboard/kbd ~/.gconf/desktop/gnome/peripherals/keyboard/kbd
 
 .PHONY: \
+    bash \
     git \
     vim \
     tmux \
