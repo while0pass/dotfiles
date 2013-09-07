@@ -44,25 +44,32 @@ ipython:
 	ln -s `pwd`/ipython/extensions ~/.config/ipython/extensions
 	rm -fr ~/.config/ipython/profile_default/
 	ipython profile create
-	patch ~/.config/ipython/profile_default/ipython_config.py < ipython/ipython_config.patch
+	patch ~/.config/ipython/profile_default/ipython_config.py \
+		< ipython/ipython_config.patch
 
 liquidprompt:
 	rm -fr ~/.liquidprompt
-	git clone --depth=1 https://github.com/nojhan/liquidprompt.git ~/.liquidprompt
+	git clone --depth=1 \
+		https://github.com/nojhan/liquidprompt.git ~/.liquidprompt
 	cp ~/.liquidprompt/liquidpromptrc-dist ~/.config/liquidpromptrc
 
 pips:
 	sudo pip install -r packages/pip.list
 
 gconf:
-	[[ -d ~/.gconf/apps/gnome-terminal ]] || mkdir -p ~/.gconf/apps/gnome-terminal
-	[[ -d ~/.gconf/apps/gnome-terminal.bak ]] || cp -R ~/.gconf/apps/gnome-terminal{,.bak}
+	[[ -d ~/.gconf/apps/gnome-terminal ]] \
+		|| mkdir -p ~/.gconf/apps/gnome-terminal
+	[[ -d ~/.gconf/apps/gnome-terminal.bak ]] \
+		|| cp -R ~/.gconf/apps/gnome-terminal{,.bak}
 	rm -fr ~/.gconf/apps/gnome-terminal
 	ln -s `pwd`/gconf/apps/gnome-terminal ~/.gconf/apps/gnome-terminal
-	[[ -d ~/.gconf/desktop/gnome/peripherals/keyboard/kbd ]] || mkdir -p ~/.gconf/desktop/gnome/peripherals/keyboard/kbd
-	[[ -d ~/.gconf/desktop/gnome/peripherals/keyboard/kbd.bak ]] || cp -R ~/.gconf/desktop/gnome/peripherals/keyboard/kbd{,.bak}
+	[[ -d ~/.gconf/desktop/gnome/peripherals/keyboard/kbd ]] \
+		|| mkdir -p ~/.gconf/desktop/gnome/peripherals/keyboard/kbd
+	[[ -d ~/.gconf/desktop/gnome/peripherals/keyboard/kbd.bak ]] \
+		|| cp -R ~/.gconf/desktop/gnome/peripherals/keyboard/kbd{,.bak}
 	rm -fr ~/.gconf/desktop/gnome/peripherals/keyboard/kbd
-	ln -s `pwd`/gconf/desktop/gnome/peripherals/keyboard/kbd ~/.gconf/desktop/gnome/peripherals/keyboard/kbd
+	ln -s `pwd`/gconf/desktop/gnome/peripherals/keyboard/kbd \
+		~/.gconf/desktop/gnome/peripherals/keyboard/kbd
 
 .PHONY: \
     bash \
