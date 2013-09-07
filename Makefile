@@ -15,7 +15,7 @@ bash:
 	then \
 		echo >> ~/.bashrc ;\
 		echo "# My settings from dotfiles" >> ~/.bashrc; \
-		echo "source $(pwd)/bash/bashrc" >> ~/.bashrc ; \
+		echo "source `pwd`/bash/bashrc" >> ~/.bashrc ; \
 	fi
 
 git:
