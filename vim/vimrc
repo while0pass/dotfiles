@@ -37,6 +37,7 @@ call vundle#rc()
 
 Bundle 'gmarik/vundle'
 Bundle 'SirVer/ultisnips'
+Bundle 'Valloric/YouCompleteMe'
 Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-surround'
 Bundle 'Lokaltog/powerline'
