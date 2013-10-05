@@ -40,6 +40,7 @@ Bundle 'SirVer/ultisnips'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
+Bundle 'majutsushi/tagbar'
 Bundle 'scrooloose/syntastic'
 Bundle 'Lokaltog/vim-easymotion'
 "Bundle 'Lokaltog/powerline'
@@ -64,6 +65,11 @@ let NERDTreeIgnore=['\.pyc$', '\~$']
 autocmd vimenter * if !argc() | NERDTree | endif
 map <F3> :NERDTreeTabsToggle<CR>
 " NERDTREE and NERDTREETABS END
+
+" TAGBAR
+map <F8> :TagbarToggle<CR>
+let g:tagbar_autoclose = 1
+" TAGBAR END
 
 " POWERLINE
 "set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
