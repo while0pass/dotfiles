@@ -40,6 +40,7 @@ Bundle 'SirVer/ultisnips'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
+Bundle 'scrooloose/syntastic'
 Bundle 'Lokaltog/powerline'
 
 Bundle 'tpope/vim-surround'
