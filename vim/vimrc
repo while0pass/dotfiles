@@ -66,6 +66,7 @@ map <F3> :NERDTreeTabsToggle<CR>
 
 " POWERLINE
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+set laststatus=2
 " POWERLINE END
 
 " SYNTASTIC
