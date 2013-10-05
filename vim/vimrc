@@ -44,7 +44,7 @@ Bundle 'majutsushi/tagbar'
 Bundle 'scrooloose/syntastic'
 Bundle 'Lokaltog/vim-easymotion'
 "Bundle 'Lokaltog/powerline'
-Bundle 'bling/vim-airline'
+"Bundle 'bling/vim-airline'
 
 Bundle 'tpope/vim-surround'
 Bundle 'Raimondi/delimitMate'
@@ -76,9 +76,10 @@ let g:tagbar_autoclose = 1
 "set laststatus=2
 " POWERLINE END
 " AIRLINE
-set laststatus=2
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
+"set laststatus=2
+"let g:airline#extensions#tabline#enabled = 1
+"let g:airline_powerline_fonts = 1
+"let g:airline_theme='solarized'
 " AIRLINE END
 
 " SYNTASTIC
