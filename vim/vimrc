@@ -42,7 +42,8 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'scrooloose/syntastic'
 Bundle 'Lokaltog/vim-easymotion'
-Bundle 'Lokaltog/powerline'
+"Bundle 'Lokaltog/powerline'
+Bundle 'bling/vim-airline'
 
 Bundle 'tpope/vim-surround'
 Bundle 'Raimondi/delimitMate'
@@ -65,9 +66,14 @@ map <F3> :NERDTreeTabsToggle<CR>
 " NERDTREE and NERDTREETABS END
 
 " POWERLINE
-set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
-set laststatus=2
+"set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+"set laststatus=2
 " POWERLINE END
+" AIRLINE
+set laststatus=2
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+" AIRLINE END
 
 " SYNTASTIC
 let g:syntastic_python_checkers=['pyflakes']
