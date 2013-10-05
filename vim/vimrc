@@ -41,6 +41,7 @@ Bundle 'Valloric/YouCompleteMe'
 Bundle 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'scrooloose/syntastic'
+Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Lokaltog/powerline'
 
 Bundle 'tpope/vim-surround'
@@ -66,6 +67,11 @@ map <F3> :NERDTreeTabsToggle<CR>
 " POWERLINE
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 " POWERLINE END
+
+" SYNTASTIC
+let g:syntastic_python_checkers=['pyflakes']
+let g:syntastic_javascript_checkers=['jslint']
+" SYNTASTIC END
 
 " Russian to English key mapping
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
