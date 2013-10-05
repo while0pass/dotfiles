@@ -39,6 +39,7 @@ Bundle 'gmarik/vundle'
 Bundle 'SirVer/ultisnips'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'scrooloose/nerdtree'
+Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'tpope/vim-surround'
 Bundle 'Lokaltog/powerline'
 
@@ -51,12 +52,12 @@ Bundle 'chriskempson/vim-tomorrow-theme'
 filetype plugin indent on
 " VUNDLE END
 
-" NERDTREE
+" NERDTREE and NERDTREETABS
 let NERDTreeIgnore=['\.pyc$', '\~$']
 " Боковое окно с Nerdtree, если vim запущен без аргументов
 autocmd vimenter * if !argc() | NERDTree | endif
-map <C-n> :NERDTreeToggle<CR>
-" NERDTREE END
+map <F3> :NERDTreeTabsToggle<CR>
+" NERDTREE and NERDTREETABS END
 
 " POWERLINE
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
