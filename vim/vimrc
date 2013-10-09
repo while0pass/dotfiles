@@ -16,6 +16,9 @@ set colorcolumn=81
 set lcs=tab:▒░,trail:▓
 set list
 
+set foldmethod=indent
+set foldlevel=99
+
 set fo=tcq1
 set hlsearch " highlighting results while searching
 
