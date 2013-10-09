@@ -61,6 +61,7 @@ Bundle 'Raimondi/delimitMate'
 
 Bundle 'godlygeek/csapprox'
 Bundle 'vim-scripts/wombat256.vim'
+Bundle 'vim-scripts/3DGlasses.vim'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'fugalh/desert.vim'
 Bundle 'chriskempson/vim-tomorrow-theme'
