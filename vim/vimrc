@@ -51,6 +51,7 @@ Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'majutsushi/tagbar'
 Bundle 'scrooloose/syntastic'
 Bundle 'Lokaltog/vim-easymotion'
+Bundle 'sjl/gundo.vim'
 "Bundle 'Lokaltog/powerline'
 "Bundle 'bling/vim-airline'
 
@@ -94,6 +95,10 @@ let g:tagbar_autoclose = 1
 let g:syntastic_python_checkers=['pyflakes']
 let g:syntastic_javascript_checkers=['jslint']
 " SYNTASTIC END
+
+" GUNDO
+map <leader>g :GundoToggle<CR>
+" GUNDO END
 
 " Russian to English key mapping
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
