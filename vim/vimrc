@@ -52,6 +52,7 @@ Bundle 'majutsushi/tagbar'
 Bundle 'scrooloose/syntastic'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'sjl/gundo.vim'
+Bundle 'vim-scripts/TaskList.vim'
 "Bundle 'Lokaltog/powerline'
 "Bundle 'bling/vim-airline'
 
@@ -99,6 +100,10 @@ let g:syntastic_javascript_checkers=['jslint']
 " GUNDO
 map <leader>g :GundoToggle<CR>
 " GUNDO END
+
+" TASKLIST
+map <leader>td <Plug>TaskList
+" TASKLIST END
 
 " Russian to English key mapping
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
