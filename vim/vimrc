@@ -53,6 +53,7 @@ Bundle 'scrooloose/syntastic'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'sjl/gundo.vim'
 Bundle 'vim-scripts/TaskList.vim'
+Bundle 'tomtom/quickfixsigns_vim'
 "Bundle 'Lokaltog/powerline'
 "Bundle 'bling/vim-airline'
 
