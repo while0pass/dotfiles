@@ -60,6 +60,8 @@ Bundle 'tpope/vim-surround'
 Bundle 'Raimondi/delimitMate'
 
 Bundle 'godlygeek/csapprox'
+" show colors in css files
+Bundle 'lilydjwg/colorizer'
 Bundle 'vim-scripts/wombat256.vim'
 Bundle 'vim-scripts/3DGlasses.vim'
 Bundle 'altercation/vim-colors-solarized'
