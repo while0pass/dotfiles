@@ -56,6 +56,7 @@ Bundle 'vim-scripts/TaskList.vim'
 Bundle 'tomtom/quickfixsigns_vim'
 "Bundle 'Lokaltog/powerline'
 "Bundle 'bling/vim-airline'
+Bundle 'ervandew/screen'
 
 Bundle 'tpope/vim-surround'
 Bundle 'Raimondi/delimitMate'
@@ -95,6 +96,19 @@ let g:tagbar_autoclose = 1
 "let g:airline_powerline_fonts = 1
 "let g:airline_theme='solarized' "'luna'
 " AIRLINE END
+
+" SCREEN
+let g:ScreenImpl = 'Tmux'
+let g:ScreenShellTmuxInitArgs = '-2'
+let g:ScreenShellInitialFocus = 'shell'
+let g:ScreenShellQuitOnVimExit = 0
+map <F5> :ScreenShellVertical<CR>
+" see http://velvetpulse.com/2012/11/19/improve-your-ruby-workflow-by-integrating-vim-tmux-pry/
+"command -nargs=? -complete=shellcmd W  :w | :call ScreenShellSend("load '".@%."';")
+"map <Leader>r :w<CR> :call ScreenShellSend("rspec ".@% . ':' . line('.'))<CR>
+"map <Leader>e :w<CR> :call ScreenShellSend("cucumber --format=pretty ".@% . ':' . line('.'))<CR>
+"map <Leader>b :w<CR> :call ScreenShellSend("break ".@% . ':' . line('.'))<CR>
+" SCREEN END
 
 " SYNTASTIC
 let g:syntastic_python_checkers=['pyflakes']
