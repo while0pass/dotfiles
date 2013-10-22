@@ -102,7 +102,7 @@ let g:ScreenImpl = 'Tmux'
 let g:ScreenShellTmuxInitArgs = '-2'
 let g:ScreenShellInitialFocus = 'shell'
 let g:ScreenShellQuitOnVimExit = 0
-map <F5> :ScreenShellVertical<CR>
+noremap <expr> <F5> exists(':ScreenShellVertical') ? ':ScreenShellVertical<CR>' : ':ScreenShellReopen<CR>'
 " see http://velvetpulse.com/2012/11/19/improve-your-ruby-workflow-by-integrating-vim-tmux-pry/
 "command -nargs=? -complete=shellcmd W  :w | :call ScreenShellSend("load '".@%."';")
 "map <Leader>r :w<CR> :call ScreenShellSend("rspec ".@% . ':' . line('.'))<CR>
