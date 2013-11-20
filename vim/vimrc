@@ -63,6 +63,7 @@ Bundle 'ervandew/screen'
 
 Bundle 'tpope/vim-surround'
 Bundle 'Raimondi/delimitMate'
+Bundle 'kchmck/vim-coffee-script'
 
 Bundle 'godlygeek/csapprox'
 " show colors in css files
