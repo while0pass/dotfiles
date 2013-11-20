@@ -41,9 +41,6 @@ set path+=~/repogitories
 set mouse=a
 set ttymouse=xterm2
 
-" GUI
-set guifont=DejaVu\ Sans\ Mono\ 12
-
 " VUNDLE
 filetype off
 set rtp+=~/.vim/bundle/vundle/
