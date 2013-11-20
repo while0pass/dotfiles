@@ -119,6 +119,26 @@ let g:syntastic_python_checkers=['pyflakes']
 let g:syntastic_javascript_checkers=['jslint']
 " SYNTASTIC END
 
+" YOUCOMPLETEME and ULTISPNIPS
+"let g:ycm_min_num_of_chars_for_completion = 99
+let g:ycm_key_list_select_completion = ['CTRL-N', 'Down']
+let g:ycm_key_list_previous_completion = ['CTRL-P', 'Up']
+" https://github.com/Valloric/YouCompleteMe/issues/420#issuecomment-28773618
+function! g:UltiSnips_Complete()
+    call UltiSnips_ExpandSnippet()
+    if g:ulti_expand_res == 0
+        call UltiSnips_JumpForwards()
+        if g:ulti_jump_forwards_res == 0
+           return "\<TAB>"
+        endif
+    endif
+    return ""
+endfunction
+au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsListSnippets="<F4>"
+" YOUCOMPLETEME and ULTISPNIPS END
+
 " GUNDO
 map <leader>g :GundoToggle<CR>
 " GUNDO END
