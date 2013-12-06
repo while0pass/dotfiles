@@ -49,6 +49,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'SirVer/ultisnips'
 Bundle 'Valloric/YouCompleteMe'
+Bundle 'davidhalter/jedi-vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'majutsushi/tagbar'
