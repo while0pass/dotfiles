@@ -120,8 +120,14 @@ let g:syntastic_python_checkers=['pyflakes']
 let g:syntastic_javascript_checkers=['jslint']
 " SYNTASTIC END
 
+" JEDIVIM (autocompletion for Python)
+" Отключить автоматический выбор первого элемента из всплывающего списка
+let g:jedi#auto_initialization = 0
+" JEDIVIM END
+
 " YOUCOMPLETEME and ULTISPNIPS
-"let g:ycm_min_num_of_chars_for_completion = 99
+"let g:ycm_auto_trigger = 0
+"let g:ycm_min_num_of_chars_for_completion = 2
 let g:ycm_key_list_select_completion = ['CTRL-N', 'Down']
 let g:ycm_key_list_previous_completion = ['CTRL-P', 'Up']
 " https://github.com/Valloric/YouCompleteMe/issues/420#issuecomment-28773618
