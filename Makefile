@@ -20,7 +20,8 @@ bash:
 
 git:
 	rm -fr ~/.config/git
-	ln -s `pwd`/git ~/.config/git
+	rm -fr ~/.gitconfig
+	ln -s `pwd`/git/config ~/.gitconfig
 
 vim:
 	rm -rf ~/.vim ~/.vimrc ~/.ctags
