@@ -175,3 +175,6 @@ colorscheme solarized
 set dir=~/.vim/temp/,$HOME/Local\ Settings/Temp
 " directory where the backup files are stored
 set backupdir=~/.vim/temp/,$HOME/Local\ Settings/Temp
+
+" check if a file has been changed
+au CursorHold,BufEnter,WinEnter,BufWinEnter,TabEnter,FocusGained * checktime
