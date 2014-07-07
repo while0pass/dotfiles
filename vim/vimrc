@@ -177,4 +177,4 @@ set dir=~/.vim/temp/,$HOME/Local\ Settings/Temp
 set backupdir=~/.vim/temp/,$HOME/Local\ Settings/Temp
 
 " check if a file has been changed
-au CursorHold,BufEnter,WinEnter,BufWinEnter,TabEnter,FocusGained * checktime
+au CursorHold,BufEnter,WinEnter,BufWinEnter,TabEnter * checktime
