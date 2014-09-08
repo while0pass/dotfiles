@@ -2,3 +2,4 @@ ipython
 line-profiler
 psutil
 memory_profiler
+pyflakes
