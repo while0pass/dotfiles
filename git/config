@@ -1,5 +1,10 @@
+[user]
+    email = while0pass@yandex.ru
+    name = Nurono
+
 [core]
     editor = vi
+    pager = less -R
 
 [color]
     ui = always
