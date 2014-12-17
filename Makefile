@@ -1,15 +1,17 @@
 SHELL := /bin/bash
+ICDIFF_URL := https://raw.githubusercontent.com/jeffkaufman/icdiff/master
 
 install: \
     bash \
     git \
     vim \
     tmux \
+    icdiff \
     xneur \
     ipython \
     liquidprompt \
     gconf
-  
+
 bash:
 	if ! grep dotfiles ~/.bashrc ; \
 	then \
@@ -34,6 +36,11 @@ vim:
 tmux:
 	rm -fr ~/.tmux.conf
 	ln -s `pwd`/tmux/tmux.conf ~/.tmux.conf
+
+icdiff:
+	sudo wget ${ICDIFF_URL}/icdiff -O /usr/local/bin/icdiff
+	sudo wget ${ICDIFF_URL}/git-icdiff -O /usr/local/bin/git-icdiff
+	sudo chmod a+rx /usr/local/bin/icdiff /usr/local/bin/git-icdiff
 
 xneur:
 	rm -fr ~/.xneur
@@ -77,9 +84,9 @@ gconf:
     git \
     vim \
     tmux \
+    icdiff \
     xneur \
     ipython \
     liquidprompt \
     pips \
-    gconf \
-  
+    gconf
