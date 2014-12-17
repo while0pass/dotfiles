@@ -8,7 +8,7 @@ set tabstop=4 " tab width measured in spaces
 set shiftwidth=4
 set autoindent
 set expandtab
-set colorcolumn=81
+set colorcolumn=80
 " displaying tab characters and trailing spaces
 " with special characters \u2592\u2591 and \u2593
 " They also may be '>-' and '@':
@@ -167,8 +167,8 @@ let g:solarized_italic=1
 let g:solarized_underline=1
 let g:solarized_contrast="high"
 set background=light
-colorscheme solarized
-"colorscheme jellybeans
+"colorscheme solarized
+colorscheme jellybeans
 "colorscheme desert
 
 " directory where the swap files are stored
