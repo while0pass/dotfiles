@@ -1,5 +1,8 @@
 <?xml version="1.0"?>
 <gconf>
+	<entry name="help" mtime="1394044546" type="string">
+		<stringvalue>disabled</stringvalue>
+	</entry>
 	<entry name="paste" mtime="1335885717" type="string">
 		<stringvalue>&lt;Primary&gt;&lt;Shift&gt;&lt;Alt&gt;v</stringvalue>
 	</entry>
