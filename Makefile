@@ -34,7 +34,8 @@ vim:
 	vi +BundleInstall! +BundleClean +qa
 
 tmux:
-	rm -fr ~/.tmux.conf
+	rm -fr ~/.tmux/ ~/.tmux.conf
+	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 	ln -s `pwd`/tmux/tmux.conf ~/.tmux.conf
 
 icdiff:
