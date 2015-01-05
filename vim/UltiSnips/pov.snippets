@@ -1,0 +1,20 @@
+snippet it "Rus11 <input/>" i
+<span class="rXI---input"
+data-placeholder="${VISUAL:...}">{% if HTML %}<input/>{% else
+%}{1:SA:%100%${1:$2~%100%$3}}{% endif %}</span>
+endsnippet
+
+snippet nb "Rus11 no break" i
+<span class="nobr">${VISUAL}</span>
+endsnippet
+
+snippet se "Rus11 data for selection" b
+,{
+  'AUTHOR': '${VISUAL}$1',
+  'TEXT':   '$2${VISUAL}',
+  'PUNCT':'[${3:0,$4}]',
+  'MASK': '[$3]',
+  'SLUG':  '[$3]',
+  'SELECT': ['${5:0-0}']
+}
+endsnippet
