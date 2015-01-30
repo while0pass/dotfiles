@@ -1,5 +1,7 @@
 SHELL := /bin/bash
 ICDIFF_URL := https://raw.githubusercontent.com/jeffkaufman/icdiff/master
+PYTHON2 := https://docs.python.org/2.7/archives/python-2.7.9-docs-text.tar.bz2
+PYTHON3 := https://docs.python.org/3/archives/python-3.4.2-docs-text.tar.bz2
 
 install: \
     bash \
@@ -10,6 +12,7 @@ install: \
     xneur \
     ipython \
     liquidprompt \
+    docs \
     gconf
 
 bash:
@@ -79,6 +82,11 @@ gconf:
 	ln -s `pwd`/gconf/desktop/gnome/peripherals/keyboard/kbd \
 		~/.gconf/desktop/gnome/peripherals/keyboard/kbd
 
+docs:
+	mkdir -p ~/docs
+	wget ${PYTHON2} -O- | tar -xjvC ~/docs
+	wget ${PYTHON3} -O- | tar -xjvC ~/docs
+
 .PHONY: \
     bash \
     git \
@@ -89,4 +97,5 @@ gconf:
     ipython \
     liquidprompt \
     pips \
+    docs \
     gconf
