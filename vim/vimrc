@@ -50,6 +50,7 @@ Bundle 'gmarik/vundle'
 Bundle 'SirVer/ultisnips'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'davidhalter/jedi-vim'
+Bundle 'terryma/vim-multiple-cursors'
 Bundle 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'majutsushi/tagbar'
@@ -146,6 +147,15 @@ let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsListSnippets="<F4>"
 " YOUCOMPLETEME and ULTISPNIPS END
+
+" MULTIPLE-CURSORS
+"function! Multiple_cursors_before()
+"    let g:ycm_auto_trigger = 0
+"endfunction
+"function! Multiple_cursors_after()
+"    let g:ycm_auto_trigger = 1
+"endfunction
+" MULTIPLE-CURSORS END
 
 " GUNDO
 map <leader>g :GundoToggle<CR>
