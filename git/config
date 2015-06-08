@@ -8,3 +8,6 @@
 
 [color]
     ui = always
+
+[url "http://"]
+    insteadOf = git://

@@ -131,6 +131,7 @@ let g:jedi#auto_initialization = 0
 "let g:ycm_min_num_of_chars_for_completion = 2
 let g:ycm_key_list_select_completion = ['CTRL-N', 'Down']
 let g:ycm_key_list_previous_completion = ['CTRL-P', 'Up']
+let g:ycm_confirm_extra_conf = 1
 " https://github.com/Valloric/YouCompleteMe/issues/420#issuecomment-28773618
 function! g:UltiSnips_Complete()
     call UltiSnips#ExpandSnippet()
