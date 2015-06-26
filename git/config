@@ -9,5 +9,5 @@
 [color]
     ui = always
 
-[url "http://"]
-    insteadOf = git://
+[url "http://github.com"]
+    insteadOf = git://github.com
