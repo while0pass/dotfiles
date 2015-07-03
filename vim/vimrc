@@ -62,6 +62,7 @@ Bundle 'tomtom/quickfixsigns_vim'
 "Bundle 'Lokaltog/powerline'
 "Bundle 'bling/vim-airline'
 Bundle 'ervandew/screen'
+Bundle 'editorconfig/editorconfig-vim'
 
 Bundle 'tpope/vim-surround'
 "Bundle 'Raimondi/delimitMate'
