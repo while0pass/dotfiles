@@ -39,6 +39,7 @@ vim:
 tmux:
 	rm -fr ~/.tmux.conf
 	ln -s `pwd`/tmux/tmux.conf ~/.tmux.conf
+	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 icdiff:
 	sudo wget ${ICDIFF_URL}/icdiff -O /usr/local/bin/icdiff
