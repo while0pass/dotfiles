@@ -181,8 +181,8 @@ let g:solarized_italic=1
 let g:solarized_underline=1
 let g:solarized_contrast="high"
 set background=light
-colorscheme solarized
-"colorscheme jellybeans
+"colorscheme solarized
+colorscheme jellybeans
 "colorscheme desert
 
 " directory where the swap files are stored
