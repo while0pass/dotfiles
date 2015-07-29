@@ -16,8 +16,7 @@ install: \
     gconf
 
 bash:
-	if ! grep dotfiles ~/.bashrc ; \
-	then \
+	if ! grep dotfiles ~/.bashrc; then \
 		echo >> ~/.bashrc ;\
 		echo "# My settings from dotfiles" >> ~/.bashrc; \
 		echo "source `pwd`/bash/bashrc" >> ~/.bashrc ; \
@@ -39,7 +38,9 @@ vim:
 tmux:
 	rm -fr ~/.tmux.conf
 	ln -s `pwd`/tmux/tmux.conf ~/.tmux.conf
-	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+	if [ ! -e ~/.tmux/plugins/tpm ]; then \
+		git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm; \
+	fi
 
 icdiff:
 	sudo wget ${ICDIFF_URL}/icdiff -O /usr/local/bin/icdiff
