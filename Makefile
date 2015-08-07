@@ -52,12 +52,12 @@ xneur:
 	ln -s `pwd`/xneur ~/.xneur
 
 ipython:
-	mkdir -p ~/.config/ipython
-	rm -fr ~/.config/ipython/extensions
-	ln -s `pwd`/ipython/extensions ~/.config/ipython/extensions
-	rm -fr ~/.config/ipython/profile_default/
+	mkdir -p ~/.ipython
+	rm -fr ~/.ipython/extensions
+	ln -s `pwd`/ipython/extensions ~/.ipython/extensions
+	rm -fr ~/.ipython/profile_default/
 	ipython profile create
-	patch ~/.config/ipython/profile_default/ipython_config.py \
+	patch ~/.ipython/profile_default/ipython_config.py \
 		< ipython/ipython_config.patch
 
 liquidprompt:
