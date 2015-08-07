@@ -43,43 +43,44 @@ set ttymouse=xterm2
 
 " VUNDLE
 filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-Bundle 'gmarik/vundle'
-Bundle 'SirVer/ultisnips'
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'davidhalter/jedi-vim'
-"Bundle 'klen/python-mode'
-"Bundle 'mattn/emmet-vim'
-Bundle 'terryma/vim-multiple-cursors'
-Bundle 'scrooloose/nerdtree'
-Bundle 'jistr/vim-nerdtree-tabs'
-Bundle 'majutsushi/tagbar'
-Bundle 'scrooloose/syntastic'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'sjl/gundo.vim'
-Bundle 'vim-scripts/TaskList.vim'
-Bundle 'tomtom/quickfixsigns_vim'
-"Bundle 'Lokaltog/powerline'
-"Bundle 'bling/vim-airline'
-Bundle 'ervandew/screen'
-Bundle 'editorconfig/editorconfig-vim'
+Plugin 'gmarik/Vundle.vim'
+Plugin 'SirVer/ultisnips'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'davidhalter/jedi-vim'
+"Plugin 'klen/python-mode'
+"Plugin 'mattn/emmet-vim'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'majutsushi/tagbar'
+Plugin 'scrooloose/syntastic'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'sjl/gundo.vim'
+Plugin 'vim-scripts/TaskList.vim'
+Plugin 'tomtom/quickfixsigns_vim'
+"Plugin 'Lokaltog/powerline'
+"Plugin 'bling/vim-airline'
+Plugin 'ervandew/screen'
+Plugin 'editorconfig/editorconfig-vim'
 
-Bundle 'tpope/vim-surround'
-"Bundle 'Raimondi/delimitMate'
-Bundle 'kchmck/vim-coffee-script'
+Plugin 'tpope/vim-surround'
+"Plugin 'Raimondi/delimitMate'
+Plugin 'kchmck/vim-coffee-script'
 
-Bundle 'godlygeek/csapprox'
+Plugin 'godlygeek/csapprox'
 " show colors in css files
-Bundle 'lilydjwg/colorizer'
-Bundle 'vim-scripts/wombat256.vim'
-Bundle 'vim-scripts/3DGlasses.vim'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'fugalh/desert.vim'
-Bundle 'chriskempson/vim-tomorrow-theme'
-Bundle 'nanotech/jellybeans.vim'
+Plugin 'lilydjwg/colorizer'
+Plugin 'vim-scripts/wombat256.vim'
+Plugin 'vim-scripts/3DGlasses.vim'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'fugalh/desert.vim'
+Plugin 'chriskempson/vim-tomorrow-theme'
+Plugin 'nanotech/jellybeans.vim'
 
+call vundle#end()
 filetype plugin indent on
 " VUNDLE END
 

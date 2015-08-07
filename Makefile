@@ -1,7 +1,9 @@
 SHELL := /bin/bash
+MAKEFDIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
+VUNDLEPATH := ~/.vim/bundle/Vundle.vim
 ICDIFF_URL := https://raw.githubusercontent.com/jeffkaufman/icdiff/master
-PYTHON2 := https://docs.python.org/2.7/archives/python-2.7.9-docs-text.tar.bz2
-PYTHON3 := https://docs.python.org/3/archives/python-3.4.2-docs-text.tar.bz2
+PYTHON2 := https://docs.python.org/2.7/archives/python-2.7.10-docs-text.tar.bz2
+PYTHON3 := https://docs.python.org/3/archives/python-3.4.3-docs-text.tar.bz2
 
 install: \
     bash \
@@ -19,25 +21,27 @@ bash:
 	if ! grep dotfiles ~/.bashrc; then \
 		echo >> ~/.bashrc ;\
 		echo "# My settings from dotfiles" >> ~/.bashrc; \
-		echo "source `pwd`/bash/bashrc" >> ~/.bashrc ; \
+		echo "source ${MAKEFDIR}/bash/bashrc" >> ~/.bashrc ; \
 	fi
 
 git:
 	rm -fr ~/.config/git
 	rm -fr ~/.gitconfig
-	ln -s `pwd`/git/config ~/.gitconfig
+	ln -s ${MAKEFDIR}/git/config ~/.gitconfig
 
 vim:
 	rm -rf ~/.vim ~/.vimrc ~/.ctags
-	ln -s `pwd`/vim ~/.vim
+	ln -s ${MAKEFDIR}/vim ~/.vim
 	ln -s ~/.vim/vimrc ~/.vimrc
 	ln -s ~/.vim/ctags ~/.ctags
+	test -e ${VUNDLEPATH} && rm -fr ${VUNDLEPATH}
+	git clone https://github.com/gmarik/Vundle.vim.git ${VUNDLEPATH}
 	mkdir -p vim/temp/
-	vi +BundleInstall! +BundleClean +qa
+	vi +VundleInstall! +VundleClean +qa
 
 tmux:
 	rm -fr ~/.tmux.conf
-	ln -s `pwd`/tmux/tmux.conf ~/.tmux.conf
+	ln -s ${MAKEFDIR}/tmux/tmux.conf ~/.tmux.conf
 	if [ ! -e ~/.tmux/plugins/tpm ]; then \
 		git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm; \
 	fi
@@ -49,12 +53,12 @@ icdiff:
 
 xneur:
 	rm -fr ~/.xneur
-	ln -s `pwd`/xneur ~/.xneur
+	ln -s ${MAKEFDIR}/xneur ~/.xneur
 
 ipython:
 	mkdir -p ~/.ipython
 	rm -fr ~/.ipython/extensions
-	ln -s `pwd`/ipython/extensions ~/.ipython/extensions
+	ln -s ${MAKEFDIR}/ipython/extensions ~/.ipython/extensions
 	rm -fr ~/.ipython/profile_default/
 	ipython profile create
 	patch ~/.ipython/profile_default/ipython_config.py \
@@ -75,13 +79,13 @@ gconf:
 	[[ -d ~/.gconf/apps/gnome-terminal.bak ]] \
 		|| cp -R ~/.gconf/apps/gnome-terminal{,.bak}
 	rm -fr ~/.gconf/apps/gnome-terminal
-	ln -s `pwd`/gconf/apps/gnome-terminal ~/.gconf/apps/gnome-terminal
+	ln -s ${MAKEFDIR}/gconf/apps/gnome-terminal ~/.gconf/apps/gnome-terminal
 	[[ -d ~/.gconf/desktop/gnome/peripherals/keyboard/kbd ]] \
 		|| mkdir -p ~/.gconf/desktop/gnome/peripherals/keyboard/kbd
 	[[ -d ~/.gconf/desktop/gnome/peripherals/keyboard/kbd.bak ]] \
 		|| cp -R ~/.gconf/desktop/gnome/peripherals/keyboard/kbd{,.bak}
 	rm -fr ~/.gconf/desktop/gnome/peripherals/keyboard/kbd
-	ln -s `pwd`/gconf/desktop/gnome/peripherals/keyboard/kbd \
+	ln -s ${MAKEFDIR}/gconf/desktop/gnome/peripherals/keyboard/kbd \
 		~/.gconf/desktop/gnome/peripherals/keyboard/kbd
 
 docs:
