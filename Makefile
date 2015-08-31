@@ -6,6 +6,8 @@ LPPATH := ${HOMEDIR}/.liquidprompt
 ICDIFF_URL := https://raw.githubusercontent.com/jeffkaufman/icdiff/master
 PYTHON2 := https://docs.python.org/2.7/archives/python-2.7.10-docs-text.tar.bz2
 PYTHON3 := https://docs.python.org/3/archives/python-3.4.3-docs-text.tar.bz2
+FINGERPRINT1 := BEGIN FROM dotfiles
+FINGERPRINT2 := END FROM dotfiles
 
 install: \
     bash \
@@ -19,12 +21,20 @@ install: \
     docs \
     gconf
 
+define BASHRC_ADD
+cat <<EOF >>.tempbashrc
+
+# ${FINGERPRINT1}
+source ${MAKEFDIR}bash/bashrc
+# ${FINGERPRINT2}
+EOF
+endef
+export BASHRC_ADD
+
 bash:
-	if ! grep dotfiles ~/.bashrc; then \
-		echo >> ~/.bashrc ;\
-		echo "# My settings from dotfiles" >> ~/.bashrc; \
-		echo "source ${MAKEFDIR}bash/bashrc" >> ~/.bashrc ; \
-	fi
+	sed -n '/${FINGERPRINT1}/,/${FINGERPRINT2}/!p' ${HOMEDIR}/.bashrc >.tempbashrc
+	bash -c "$$BASHRC_ADD"
+	mv .tempbashrc ${HOMEDIR}/.bashrc
 
 git:
 	rm -fr ${HOMEDIR}/.config/git
