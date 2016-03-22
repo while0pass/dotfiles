@@ -3,3 +3,5 @@ line-profiler
 psutil
 memory_profiler
 pyflakes
+virtualenv
+virtualenvwrapper
