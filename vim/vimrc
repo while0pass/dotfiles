@@ -87,6 +87,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-surround'
     Plug 'junegunn/vim-easy-align'
     Plug 'easymotion/vim-easymotion'
+    Plug 'jeetsukumaran/vim-indentwise'
     Plug 'terryma/vim-multiple-cursors'
     Plug 'tomtom/quickfixsigns_vim'
     Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
