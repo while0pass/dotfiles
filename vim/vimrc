@@ -50,7 +50,7 @@ call plug#begin('~/.vim/plugged')
 
     Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
-"""""""" AUTOCOMPLETE """"""""
+    """""""" AUTOCOMPLETE """"""""
 
     " Autocompletion for C/C++ (clang), JavaScript (tern) and Rust (racer)
     Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --tern-completer --racer-completer', 'for': ['c', 'cpp', 'javascript', 'rust'] }
@@ -61,18 +61,27 @@ call plug#begin('~/.vim/plugged')
     " Emmet
     Plug 'mattn/emmet-vim', { 'for': ['html', 'css', 'stylus', 'scss', 'sass', 'less'] }
 
-"""""""" SYNTAX HIGHLIGHTING """"""""
+    """""""" SYNTAX HIGHLIGHTING """"""""
 
     Plug 'othree/yajs.vim', { 'for': 'javascript' }
     Plug 'vim-scripts/vim-stylus', { 'for': 'stylus' }
-    " Подсветка литералов цвета соответственным цветом
+    " Подсветка литералов цвета соответствующим цветом
     Plug 'lilydjwg/colorizer', { 'for': ['css', 'stylus', 'scss', 'sass', 'less'] }
 
-"""""""" SYNTAX CHECKERS """"""""
+    " 256-color schemes
+    Plug 'godlygeek/csapprox'
+    Plug 'vim-scripts/wombat256.vim'
+    Plug 'vim-scripts/3DGlasses.vim'
+    Plug 'altercation/vim-colors-solarized'
+    Plug 'fugalh/desert.vim'
+    Plug 'chriskempson/vim-tomorrow-theme'
+    Plug 'nanotech/jellybeans.vim'
+
+    """""""" SYNTAX CHECKERS """"""""
 
     Plug 'vim-syntastic/syntastic'
 
-"""""""" OTHERS """"""""
+    """""""" OTHERS """"""""
 
     Plug 'editorconfig/editorconfig-vim'
     Plug 'tpope/vim-surround'
@@ -89,15 +98,6 @@ call plug#begin('~/.vim/plugged')
     " Class outline viewer
     " https://majutsushi.github.io/tagbar/
     Plug 'majutsushi/tagbar'
-
-    " 256-color schemes
-    Plug 'godlygeek/csapprox'
-    Plug 'vim-scripts/wombat256.vim'
-    Plug 'vim-scripts/3DGlasses.vim'
-    Plug 'altercation/vim-colors-solarized'
-    Plug 'fugalh/desert.vim'
-    Plug 'chriskempson/vim-tomorrow-theme'
-    Plug 'nanotech/jellybeans.vim'
 
 call plug#end()
 filetype plugin indent on
