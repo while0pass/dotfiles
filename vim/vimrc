@@ -41,48 +41,68 @@ set path+=~/repogitories
 set mouse=a
 set ttymouse=xterm2
 
-" VUNDLE
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
 
-Plugin 'gmarik/Vundle.vim'
-Plugin 'SirVer/ultisnips'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'davidhalter/jedi-vim'
-"Plugin 'klen/python-mode'
-Plugin 'mattn/emmet-vim'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'majutsushi/tagbar'
-Plugin 'scrooloose/syntastic'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'sjl/gundo.vim'
-Plugin 'vim-scripts/TaskList.vim'
-Plugin 'tomtom/quickfixsigns_vim'
-"Plugin 'Lokaltog/powerline'
-"Plugin 'bling/vim-airline'
-Plugin 'ervandew/screen'
-Plugin 'editorconfig/editorconfig-vim'
+" VIM-PLUG plugin manager
+if empty(glob("~/.vim/autoload/plug.vim"))
+    execute '!mkdir -p ~/.vim/autoload; curl -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim'
+endif
+call plug#begin('~/.vim/plugged')
 
-Plugin 'tpope/vim-surround'
-"Plugin 'Raimondi/delimitMate'
-Plugin 'kchmck/vim-coffee-script'
+    Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
-Plugin 'godlygeek/csapprox'
-" show colors in css files
-Plugin 'lilydjwg/colorizer'
-Plugin 'vim-scripts/wombat256.vim'
-Plugin 'vim-scripts/3DGlasses.vim'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'fugalh/desert.vim'
-Plugin 'chriskempson/vim-tomorrow-theme'
-Plugin 'nanotech/jellybeans.vim'
+"""""""" AUTOCOMPLETE """"""""
 
-call vundle#end()
+    " Autocompletion for C/C++ (clang), JavaScript (tern) and Rust (racer)
+    Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --tern-completer --racer-completer', 'for': ['c', 'cpp', 'javascript', 'rust'] }
+
+    " Python autocompletion
+    Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+
+    " Emmet
+    Plug 'mattn/emmet-vim', { 'for': ['html', 'css', 'stylus', 'scss', 'sass', 'less'] }
+
+"""""""" SYNTAX HIGHLIGHTING """"""""
+
+    Plug 'othree/yajs.vim', { 'for': 'javascript' }
+    Plug 'vim-scripts/vim-stylus', { 'for': 'stylus' }
+    " Подсветка литералов цвета соответственным цветом
+    Plug 'lilydjwg/colorizer', { 'for': ['css', 'stylus', 'scss', 'sass', 'less'] }
+
+"""""""" SYNTAX CHECKERS """"""""
+
+    Plug 'vim-syntastic/syntastic'
+
+"""""""" OTHERS """"""""
+
+    Plug 'editorconfig/editorconfig-vim'
+    Plug 'tpope/vim-surround'
+    Plug 'junegunn/vim-easy-align'
+    Plug 'easymotion/vim-easymotion'
+    Plug 'terryma/vim-multiple-cursors'
+    Plug 'tomtom/quickfixsigns_vim'
+    Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
+
+    " Filetree
+    Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+    Plug 'jistr/vim-nerdtree-tabs', { 'on':  'NERDTreeToggle' }
+
+    " Class outline viewer
+    " https://majutsushi.github.io/tagbar/
+    Plug 'majutsushi/tagbar'
+
+    " 256-color schemes
+    Plug 'godlygeek/csapprox'
+    Plug 'vim-scripts/wombat256.vim'
+    Plug 'vim-scripts/3DGlasses.vim'
+    Plug 'altercation/vim-colors-solarized'
+    Plug 'fugalh/desert.vim'
+    Plug 'chriskempson/vim-tomorrow-theme'
+    Plug 'nanotech/jellybeans.vim'
+
+call plug#end()
 filetype plugin indent on
-" VUNDLE END
+" VIM-PLUG END
+
 
 " NERDTREE and NERDTREETABS
 let NERDTreeIgnore=['\.pyc$', '\~$']
@@ -91,44 +111,24 @@ autocmd vimenter * if !argc() | NERDTree | endif
 map <F3> :NERDTreeTabsToggle<CR>
 " NERDTREE and NERDTREETABS END
 
+
 " TAGBAR
 map <F8> :TagbarToggle<CR>
 let g:tagbar_autoclose = 1
 " TAGBAR END
 
-" POWERLINE
-"set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
-"set laststatus=2
-" POWERLINE END
-" AIRLINE
-"set laststatus=2
-"let g:airline#extensions#tabline#enabled = 1
-"let g:airline_powerline_fonts = 1
-"let g:airline_theme='solarized' "'luna'
-" AIRLINE END
-
-" SCREEN
-let g:ScreenImpl = 'Tmux'
-let g:ScreenShellTmuxInitArgs = '-2'
-let g:ScreenShellInitialFocus = 'shell'
-let g:ScreenShellQuitOnVimExit = 0
-noremap <expr> <F5> exists(':ScreenShellVertical') ? ':ScreenShellVertical<CR>' : ':ScreenShellReopen<CR>'
-" see http://velvetpulse.com/2012/11/19/improve-your-ruby-workflow-by-integrating-vim-tmux-pry/
-"command -nargs=? -complete=shellcmd W  :w | :call ScreenShellSend("load '".@%."';")
-"map <Leader>r :w<CR> :call ScreenShellSend("rspec ".@% . ':' . line('.'))<CR>
-"map <Leader>e :w<CR> :call ScreenShellSend("cucumber --format=pretty ".@% . ':' . line('.'))<CR>
-"map <Leader>b :w<CR> :call ScreenShellSend("break ".@% . ':' . line('.'))<CR>
-" SCREEN END
 
 " SYNTASTIC
 let g:syntastic_python_checkers=['pyflakes']
 let g:syntastic_javascript_checkers=['jslint']
 " SYNTASTIC END
 
+
 " JEDIVIM (autocompletion for Python)
 " Отключить автоматический выбор первого элемента из всплывающего списка
 let g:jedi#auto_initialization = 0
 " JEDIVIM END
+
 
 " YOUCOMPLETEME and ULTISPNIPS
 "let g:ycm_auto_trigger = 0
@@ -153,6 +153,7 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsListSnippets="<F4>"
 " YOUCOMPLETEME and ULTISPNIPS END
 
+
 " MULTIPLE-CURSORS
 "function! Multiple_cursors_before()
 "    let g:ycm_auto_trigger = 0
@@ -162,26 +163,20 @@ let g:UltiSnipsListSnippets="<F4>"
 "endfunction
 " MULTIPLE-CURSORS END
 
-" GUNDO
-map <leader>g :GundoToggle<CR>
-" GUNDO END
-
-" TASKLIST
-map <leader>td <Plug>TaskList
-" TASKLIST END
 
 " Russian to English key mapping
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
 
 " colors
-syntax on " syntax highlighting
-syntax enable
-let g:solarized_termcolors=256
-let g:solarized_bold=1
-let g:solarized_italic=1
-let g:solarized_underline=1
-let g:solarized_contrast="high"
-set background=light
+if !exists("g:syntax_on")
+    syntax enable
+endif
+"let g:solarized_termcolors=256
+"let g:solarized_bold=1
+"let g:solarized_italic=1
+"let g:solarized_underline=1
+"let g:solarized_contrast="high"
+"set background=light
 "colorscheme solarized
 colorscheme jellybeans
 "colorscheme desert
