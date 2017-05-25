@@ -1,0 +1,72 @@
+@font-face {
+  font-family: "PT Sans";
+  src: url(fonts/PTS55F_W.woff);
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: "PT Sans";
+  src: url(fonts/PTS56F_W.woff);
+  font-style: italic;
+  font-weight: normal;
+}
+@font-face {
+  font-family: "PT Sans";
+  src: url(fonts/PTS75F_W.woff);
+  font-style: normal;
+  font-weight: bold;
+}
+@font-face {
+  font-family: "PT Sans";
+  src: url(fonts/PTS76F_W.woff);
+  font-style: italic;
+  font-weight: bold;
+}
+
+html, html * {
+  background-color: #b7a6ad;
+}
+
+.card {
+  color: #444;
+  font-size: 16pt;
+  font-family: "PT Sans";
+  text-align: left;
+}
+
+.tags span {
+  color: #c8b7be;
+  background-color: rgba(0, 120, 0, 0.2);
+  border-radius: 3px;
+  margin: 0.3em;
+  padding: 0.1em 0.5em;
+  font-weight: bold;
+  font-size: smaller;
+}
+
+.tags {
+  margin-bottom: 1em;
+}
+
+.myquestion{
+}
+
+.myanswer{
+  color: #070;
+  margin-top: 0.5em;
+}
+
+#typing{
+  margin: 16pt 0;
+  font-size: 16pt;
+  display: none;
+}
+
+#typing input{
+  width: 33%;
+  min-width: 100px;
+  height: 2em;
+  padding: 1em;
+  font-size: 16pt;
+  display: none;
+}
