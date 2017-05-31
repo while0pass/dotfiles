@@ -47,15 +47,13 @@ vim:
 	ln -s ${HOMEDIR}/.vim/vimrc ${HOMEDIR}/.vimrc
 	ln -s ${HOMEDIR}/.vim/ctags ${HOMEDIR}/.ctags
 	mkdir -p vim/temp/
-	if [ -e ${VUNDLEPATH}/.git ]; then \
-		git --work-tree=${VUDNLEPATH} --git-dir=${VUNDLEPATH}/.git \
-			pull origin master; \
+	if [ -e ${HOMEDIR}/.vim/autoload/plug.vim ]; then \
+		vi +PlugUpgrade +PlugUpdate +PlugClean +qa ; \
 	else \
-		mkdir -p ${VUNDLEPATH}; \
-		rm -fr ${VUNDLEPATH}; \
-		git clone https://github.com/gmarik/Vundle.vim.git ${VUNDLEPATH}; \
+		curl -fLo ${HOMEDIR}/.vim/autoload/plug.vim --create-dirs \
+			https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim ; \
+		vi +PlugInstall +PlugClean +qa ; \
 	fi
-	vi +VundleInstall! +VundleClean +qa
 
 tmux:
 	rm -fr ${HOMEDIR}/.tmux.conf
