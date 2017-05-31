@@ -44,6 +44,7 @@ git:
 vim:
 	rm -rf ${HOMEDIR}/.vim ${HOMEDIR}/.vimrc ${HOMEDIR}/.ctags
 	ln -s ${MAKEFDIR}vim ${HOMEDIR}/.vim
+	ln -sf ${HOMEFDIR}vim ${HOMEDIR}/.config/nvim
 	ln -s ${HOMEDIR}/.vim/vimrc ${HOMEDIR}/.vimrc
 	ln -s ${HOMEDIR}/.vim/ctags ${HOMEDIR}/.ctags
 	mkdir -p vim/temp/
