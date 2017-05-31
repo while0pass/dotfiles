@@ -20,7 +20,8 @@ set foldmethod=indent
 set foldlevel=99
 
 " shortcut for paste mode
-" http://superuser.com/questions/134709/how-can-i-keep-the-code-formated-as-original-source-when-i-paste-them-to-vim
+" http://superuser.com/questions/134709/
+" how-can-i-keep-the-code-formated-as-original-source-when-i-paste-them-to-vim
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 set showmode
@@ -43,11 +44,9 @@ set ttymouse=xterm2
 
 
 " VIM-PLUG plugin manager
-if empty(glob("~/.vim/autoload/plug.vim"))
+if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    	\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    "silent !mkdir -p ~/.config/nvim/autoload
-    "silent !ln -s ~/.config/nvim/autoload/plug.vim ~/.vim/autoload/plug.vim
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     autocmd VimEnter * PlugInstall --sync | source ~/.vim/vimrc
 endif
 call plug#begin('~/.vim/plugged')
@@ -57,20 +56,24 @@ call plug#begin('~/.vim/plugged')
     """""""" AUTOCOMPLETE """"""""
 
     " Autocompletion for C/C++ (clang), JavaScript (tern) and Rust (racer)
-    Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --tern-completer --racer-completer', 'for': ['c', 'cpp', 'javascript', 'rust'] }
+    Plug 'Valloric/YouCompleteMe', { 'do':
+        \ './install.py --clang-completer --tern-completer --racer-completer',
+        \ 'for': ['c', 'cpp', 'javascript', 'rust'] }
 
     " Python autocompletion
     Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 
     " Emmet
-    Plug 'mattn/emmet-vim', { 'for': ['html', 'css', 'stylus', 'scss', 'sass', 'less'] }
+    Plug 'mattn/emmet-vim', { 'for': ['html', 'css',
+                                    \ 'stylus', 'scss', 'sass', 'less'] }
 
     """""""" SYNTAX HIGHLIGHTING """"""""
 
     Plug 'othree/yajs.vim', { 'for': 'javascript' }
     Plug 'vim-scripts/vim-stylus', { 'for': 'stylus' }
     " Подсветка литералов цвета соответствующим цветом
-    Plug 'lilydjwg/colorizer', { 'for': ['css', 'stylus', 'scss', 'sass', 'less'] }
+    Plug 'lilydjwg/colorizer', { 'for': ['css',
+                                       \ 'stylus', 'scss', 'sass', 'less'] }
 
     " 256-color schemes
     Plug 'godlygeek/csapprox'
@@ -152,7 +155,8 @@ function! g:UltiSnips_Complete()
     endif
     return ""
 endfunction
-au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
+au BufEnter * exec "inoremap <silent> ".g:UltiSnipsExpandTrigger.
+                 \ " <C-R>=g:UltiSnips_Complete()<cr>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsListSnippets="<F4>"
@@ -170,7 +174,8 @@ let g:UltiSnipsListSnippets="<F4>"
 
 
 " Russian to English key mapping
-set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
+set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,
+           \фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
 
 " colors
 if !exists("g:syntax_on")
