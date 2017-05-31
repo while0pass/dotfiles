@@ -4,8 +4,8 @@ MAKEFDIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 VUNDLEPATH := ${HOMEDIR}/.vim/bundle/Vundle.vim
 LPPATH := ${HOMEDIR}/.liquidprompt
 ICDIFF_URL := https://raw.githubusercontent.com/jeffkaufman/icdiff/master
-PYTHON2 := https://docs.python.org/2.7/archives/python-2.7.11rc1-docs-text.tar.bz2
-PYTHON3 := https://docs.python.org/3.4/archives/python-3.4.3-docs-text.tar.bz2
+PYTHON2 := https://docs.python.org/2.7/archives/python-2.7.13-docs-text.tar.bz2
+PYTHON3 := https://docs.python.org/3.6/archives/python-3.6.1-docs-text.tar.bz2
 FINGERPRINT1 := BEGIN FROM dotfiles
 FINGERPRINT2 := END FROM dotfiles
 
