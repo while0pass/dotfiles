@@ -74,6 +74,7 @@ call plug#begin('~/.vim/plugged')
     " Подсветка литералов цвета соответствующим цветом
     Plug 'lilydjwg/colorizer', { 'for': ['css',
                                        \ 'stylus', 'scss', 'sass', 'less'] }
+    Plug 'rust-lang/rust.vim'
 
     " 256-color schemes
     Plug 'godlygeek/csapprox'
