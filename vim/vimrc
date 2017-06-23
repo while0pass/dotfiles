@@ -57,7 +57,7 @@ call plug#begin('~/.vim/plugged')
 
     " Autocompletion for C/C++ (clang), JavaScript (tern) and Rust (racer)
     Plug 'Valloric/YouCompleteMe', { 'do':
-        \ './install.py --clang-completer --tern-completer --racer-completer',
+        \ 'CXX=clang ./install.py --clang-completer --tern-completer --racer-completer',
         \ 'for': ['c', 'cpp', 'javascript', 'rust'] }
 
     " Python autocompletion
