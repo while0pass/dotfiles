@@ -42,6 +42,26 @@ set path+=~/repogitories
 set mouse=a
 set ttymouse=xterm2
 
+function! s:goyo_enter()
+  " Скрыть статусную строку tmux
+  silent !tmux set status off
+  " Раскрыть активную область tmux на весь экран
+  silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
+  set noshowmode
+  set noshowcmd
+  set scrolloff=999
+  " Запустить limelight
+  Limelight
+endfunction
+
+function! s:goyo_leave()
+  silent !tmux set status on
+  silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+  set showmode
+  set showcmd
+  set scrolloff=5
+  Limelight!
+endfunction
 
 " VIM-PLUG plugin manager
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -84,6 +104,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'fugalh/desert.vim'
     Plug 'chriskempson/vim-tomorrow-theme'
     Plug 'nanotech/jellybeans.vim'
+    Plug 'junegunn/seoul256.vim'
 
     """""""" SYNTAX CHECKERS """"""""
 
@@ -99,6 +120,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'terryma/vim-multiple-cursors'
     Plug 'tomtom/quickfixsigns_vim'
     Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
+    Plug 'junegunn/limelight.vim', { 'on': 'Goyo' }
+    autocmd! User GoyoEnter nested call <SID>goyo_enter()
+    autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
     " Filetree
     Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
@@ -188,9 +212,14 @@ endif
 "let g:solarized_underline=1
 "let g:solarized_contrast="high"
 "set background=light
+let g:seoul256_background = 234 " 233 is minimum
+let g:seoul256_light_background = 255 " 256 is maximum
+"let g:seoul256_srgb = 1
+"colorscheme seoul256-light
+colorscheme seoul256
 "colorscheme solarized
-colorscheme jellybeans
 "colorscheme desert
+"colorscheme jellybeans
 
 " directory where the swap files are stored
 set dir=~/.vim/temp/,$HOME/Local\ Settings/Temp
