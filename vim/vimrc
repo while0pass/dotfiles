@@ -8,6 +8,7 @@ set tabstop=4 " tab width measured in spaces
 set shiftwidth=4
 set autoindent
 set expandtab
+set scrolloff=5
 set colorcolumn=80
 " displaying tab characters and trailing spaces
 " with special characters \u2592\u2591 and \u2593
