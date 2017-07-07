@@ -52,6 +52,7 @@ function! s:goyo_enter()
   set scrolloff=999
   " Запустить limelight
   Limelight
+  QuickfixsignsDisable
 endfunction
 
 function! s:goyo_leave()
@@ -61,6 +62,7 @@ function! s:goyo_leave()
   set showcmd
   set scrolloff=5
   Limelight!
+  QuickfixsignsEnable
 endfunction
 
 " VIM-PLUG plugin manager
