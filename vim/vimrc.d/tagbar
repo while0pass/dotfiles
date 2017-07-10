@@ -1,0 +1,4 @@
+" vim: ft=vim
+
+map <F8> :TagbarToggle<CR>
+let g:tagbar_autoclose = 1

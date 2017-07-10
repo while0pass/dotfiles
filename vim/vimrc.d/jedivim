@@ -1,0 +1,4 @@
+" vim: ft=vim
+
+" Отключить автовыбор первого элемента из всплывающего списка
+let g:jedi#auto_initialization = 0

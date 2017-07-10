@@ -1,0 +1,6 @@
+" vim: ft=vim
+
+let NERDTreeIgnore=['\.pyc$', '\~$']
+" Боковое окно с Nerdtree, если vim запущен без аргументов
+autocmd vimenter * if !argc() | NERDTree | endif
+map <F3> :NERDTreeTabsToggle<CR>

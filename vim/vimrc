@@ -118,6 +118,10 @@ call plug#begin('~/.vim/plugged')
     Plug 'editorconfig/editorconfig-vim'
     Plug 'tpope/vim-surround'
     Plug 'junegunn/vim-easy-align'
+    " Start interactive EasyAlign in visual mode (e.g. vipga) and for
+    " a motion/text object (e.g. gaip)
+    xmap ga <Plug>(EasyAlign)
+    nmap ga <Plug>(EasyAlign)
     Plug 'easymotion/vim-easymotion'
     Plug 'jeetsukumaran/vim-indentwise'
     Plug 'terryma/vim-multiple-cursors'
@@ -128,8 +132,7 @@ call plug#begin('~/.vim/plugged')
     autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
     " Filetree
-    Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-    Plug 'jistr/vim-nerdtree-tabs', { 'on':  'NERDTreeToggle' }
+    Plug 'scrooloose/nerdtree' | Plug 'jistr/vim-nerdtree-tabs'
 
     " Class outline viewer
     " https://majutsushi.github.io/tagbar/
@@ -140,66 +143,13 @@ filetype plugin indent on
 " VIM-PLUG END
 
 
-" NERDTREE and NERDTREETABS
-let NERDTreeIgnore=['\.pyc$', '\~$']
-" Боковое окно с Nerdtree, если vim запущен без аргументов
-autocmd vimenter * if !argc() | NERDTree | endif
-map <F3> :NERDTreeTabsToggle<CR>
-" NERDTREE and NERDTREETABS END
-
-
-" TAGBAR
-map <F8> :TagbarToggle<CR>
-let g:tagbar_autoclose = 1
-" TAGBAR END
-
-
-" SYNTASTIC
-let g:syntastic_python_checkers=['pyflakes']
-let g:syntastic_javascript_checkers=['eslint']
-" SYNTASTIC END
-
-
-" JEDIVIM (autocompletion for Python)
-" Отключить автоматический выбор первого элемента из всплывающего списка
-let g:jedi#auto_initialization = 0
-" JEDIVIM END
-
-
-" YOUCOMPLETEME and ULTISPNIPS
-"let g:ycm_auto_trigger = 0
-"let g:ycm_min_num_of_chars_for_completion = 2
-let g:ycm_key_list_select_completion = ['CTRL-N', 'Down']
-let g:ycm_key_list_previous_completion = ['CTRL-P', 'Up']
-let g:ycm_confirm_extra_conf = 1
-" https://github.com/Valloric/YouCompleteMe/issues/420#issuecomment-28773618
-function! g:UltiSnips_Complete()
-    call UltiSnips#ExpandSnippet()
-    if g:ulti_expand_res == 0
-        call UltiSnips#JumpForwards()
-        if g:ulti_jump_forwards_res == 0
-           return "\<TAB>"
-        endif
-    endif
-    return ""
-endfunction
-au BufEnter * exec "inoremap <silent> ".g:UltiSnipsExpandTrigger.
-                 \ " <C-R>=g:UltiSnips_Complete()<cr>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-let g:UltiSnipsListSnippets="<F4>"
-" YOUCOMPLETEME and ULTISPNIPS END
-
-
-" MULTIPLE-CURSORS
-"function! Multiple_cursors_before()
-"    let g:ycm_auto_trigger = 0
-"endfunction
-"function! Multiple_cursors_after()
-"    let g:ycm_auto_trigger = 1
-"endfunction
-" MULTIPLE-CURSORS END
-
+"let &runtimepath.=','.string('~/.vim/vimrc.d')
+runtime vimrc.d/nerdtree
+runtime vimrc.d/tagbar
+runtime vimrc.d/syntastic
+runtime vimrc.d/jedivim
+runtime vimrc.d/youcompleteme_ultisnips
+runtime vimrc.d/multipleCursors
 
 " Russian to English key mapping
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,
@@ -209,20 +159,8 @@ set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNO
 if !exists("g:syntax_on")
     syntax enable
 endif
-"let g:solarized_termcolors=256
-"let g:solarized_bold=1
-"let g:solarized_italic=1
-"let g:solarized_underline=1
-"let g:solarized_contrast="high"
-"set background=light
-let g:seoul256_background = 234 " 233 is minimum
-let g:seoul256_light_background = 255 " 256 is maximum
-"let g:seoul256_srgb = 1
-"colorscheme seoul256-light
-colorscheme seoul256
-"colorscheme solarized
-"colorscheme desert
-"colorscheme jellybeans
+"runtime vimrc.d/colors/solorized
+runtime vimrc.d/colors/seoul256
 
 " directory where the swap files are stored
 set dir=~/.vim/temp/,$HOME/Local\ Settings/Temp
