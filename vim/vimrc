@@ -43,29 +43,6 @@ set path+=~/repogitories
 set mouse=a
 set ttymouse=xterm2
 
-function! s:goyo_enter()
-  " Скрыть статусную строку tmux
-  silent !tmux set status off
-  " Раскрыть активную область tmux на весь экран
-  silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
-  set noshowmode
-  set noshowcmd
-  set scrolloff=999
-  " Запустить limelight
-  Limelight
-  QuickfixsignsDisable
-endfunction
-
-function! s:goyo_leave()
-  silent !tmux set status on
-  silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
-  set showmode
-  set showcmd
-  set scrolloff=5
-  Limelight!
-  QuickfixsignsEnable
-endfunction
-
 " VIM-PLUG plugin manager
 if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -74,17 +51,17 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 call plug#begin('~/.vim/plugged')
 
-    Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-
     """""""" AUTOCOMPLETE """"""""
 
     " Autocompletion for C/C++ (clang), JavaScript (tern) and Rust (racer)
     Plug 'Valloric/YouCompleteMe', { 'do':
-        \ 'CXX=clang ./install.py --clang-completer --tern-completer --racer-completer',
+        \ './install.py --clang-completer --tern-completer --racer-completer',
         \ 'for': ['c', 'cpp', 'javascript', 'rust'] }
+    Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+    runtime vimrc.d/youcompleteme_ultisnips
 
     " Python autocompletion
-    Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+    Plug 'davidhalter/jedi-vim', { 'for': 'python' } | runtime vimrc.d/jedivim
 
     " Emmet
     Plug 'mattn/emmet-vim', { 'for': ['html', 'css',
@@ -111,45 +88,32 @@ call plug#begin('~/.vim/plugged')
 
     """""""" SYNTAX CHECKERS """"""""
 
-    Plug 'vim-syntastic/syntastic'
+    Plug 'vim-syntastic/syntastic' | runtime vimrc.d/syntastic
 
     """""""" OTHERS """"""""
 
     Plug 'editorconfig/editorconfig-vim'
     Plug 'tpope/vim-surround'
-    Plug 'junegunn/vim-easy-align'
-    " Start interactive EasyAlign in visual mode (e.g. vipga) and for
-    " a motion/text object (e.g. gaip)
-    xmap ga <Plug>(EasyAlign)
-    nmap ga <Plug>(EasyAlign)
+    Plug 'junegunn/vim-easy-align' | runtime vimrc.d/easyAlign
     Plug 'easymotion/vim-easymotion'
     Plug 'jeetsukumaran/vim-indentwise'
-    Plug 'terryma/vim-multiple-cursors'
+    Plug 'terryma/vim-multiple-cursors' | runtime vimrc.d/multipleCursors
     Plug 'tomtom/quickfixsigns_vim'
-    Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
     Plug 'junegunn/limelight.vim', { 'on': 'Goyo' }
-    autocmd! User GoyoEnter nested call <SID>goyo_enter()
-    autocmd! User GoyoLeave nested call <SID>goyo_leave()
+    Plug 'junegunn/goyo.vim', { 'on': 'Goyo' } | runtime vimrc.d/goyo
 
     " Filetree
     Plug 'scrooloose/nerdtree' | Plug 'jistr/vim-nerdtree-tabs'
+    runtime vimrc.d/nerdtree
 
     " Class outline viewer
     " https://majutsushi.github.io/tagbar/
-    Plug 'majutsushi/tagbar'
+    Plug 'majutsushi/tagbar' | runtime vimrc.d/tagbar
 
 call plug#end()
 filetype plugin indent on
 " VIM-PLUG END
 
-
-"let &runtimepath.=','.string('~/.vim/vimrc.d')
-runtime vimrc.d/nerdtree
-runtime vimrc.d/tagbar
-runtime vimrc.d/syntastic
-runtime vimrc.d/jedivim
-runtime vimrc.d/youcompleteme_ultisnips
-runtime vimrc.d/multipleCursors
 
 " Russian to English key mapping
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,

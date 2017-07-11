@@ -1,0 +1,27 @@
+" vim: ft=vim
+
+function! s:goyo_enter()
+  " Скрыть статусную строку tmux
+  silent !tmux set status off
+  " Раскрыть активную область tmux на весь экран
+  silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
+  set noshowmode
+  set noshowcmd
+  set scrolloff=999
+  " Запустить limelight
+  Limelight
+  QuickfixsignsDisable
+endfunction
+
+function! s:goyo_leave()
+  silent !tmux set status on
+  silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+  set showmode
+  set showcmd
+  set scrolloff=5
+  Limelight!
+  QuickfixsignsEnable
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
