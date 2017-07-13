@@ -8,6 +8,10 @@ PYTHON2 := https://docs.python.org/2.7/archives/python-2.7.13-docs-text.tar.bz2
 PYTHON3 := https://docs.python.org/3.6/archives/python-3.6.1-docs-text.tar.bz2
 FINGERPRINT1 := BEGIN FROM dotfiles
 FINGERPRINT2 := END FROM dotfiles
+DCONF_TERM := /org/gnome/terminal/legacy/profiles:/
+DCONF_DARK_EMERALD := ${DCONF_TERM}:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/
+DCONF_MILKY := ${DCONF_TERM}:5487f76d-dd87-48f9-99f5-ca94a9baf7e6/
+
 
 install: \
     bash \
@@ -19,7 +23,7 @@ install: \
     ipython \
     liquidprompt \
     docs \
-    gconf
+    dconf
 
 define BASHRC_ADD
 cat <<EOF >>.tempbashrc
@@ -113,6 +117,14 @@ gconf:
 	ln -s ${MAKEFDIR}gconf/desktop/gnome/peripherals/keyboard/kbd \
 		${HOMEDIR}/.gconf/desktop/gnome/peripherals/keyboard/kbd
 
+dconf:
+	dconf load ${DCONF_DARK_EMERALD} < dconf/dark_emerald_terminal.dconf
+	dconf load ${DCONF_MILKY} < dconf/milky_terminal.dconf
+
+dconf-dump:
+	dconf dump DCONF_DARK_EMERALD > dconf/dark_emerald_terminal.dconf
+	dconf dump DCONF_MILKY > dconf/milky_terminal.dconf
+
 docs:
 	mkdir -p ~/docs
 	wget ${PYTHON2} -O- | tar -xjvC ~/docs
@@ -129,4 +141,5 @@ docs:
     liquidprompt \
     pips \
     docs \
+	dconf \
     gconf
