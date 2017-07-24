@@ -6,6 +6,7 @@
 let g:ycm_key_list_select_completion = ['CTRL-N', 'Down']
 let g:ycm_key_list_previous_completion = ['CTRL-P', 'Up']
 let g:ycm_confirm_extra_conf = 1
+let g:ycm_extra_conf_globlist = ['~/repogitories/*']
 " https://github.com/Valloric/YouCompleteMe/issues/420#issuecomment-28773618
 function! g:UltiSnips_Complete()
     call UltiSnips#ExpandSnippet()
