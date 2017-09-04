@@ -141,5 +141,5 @@ docs:
     liquidprompt \
     pips \
     docs \
-	dconf \
+    dconf \
     gconf
