@@ -18,6 +18,8 @@ function! s:goyo_enter()
   set scrolloff=0
   noremap j j
   noremap k k
+  "nnoremap <silent> <Plug>MyWonderfulMap j:silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)<CR>
+  "nmap j <Plug>MyWonderfulMap
 endfunction
 
 function! s:goyo_leave()
