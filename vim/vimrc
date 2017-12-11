@@ -75,6 +75,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'lilydjwg/colorizer', { 'for': ['css',
                                        \ 'stylus', 'scss', 'sass', 'less'] }
     Plug 'rust-lang/rust.vim'
+    Plug 'saltstack/salt-vim'
 
     " 256-color schemes
     Plug 'godlygeek/csapprox'
