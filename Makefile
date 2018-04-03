@@ -8,10 +8,12 @@ PYTHON2 := https://docs.python.org/2.7/archives/python-2.7.13-docs-text.tar.bz2
 PYTHON3 := https://docs.python.org/3.6/archives/python-3.6.1-docs-text.tar.bz2
 FINGERPRINT1 := BEGIN FROM dotfiles
 FINGERPRINT2 := END FROM dotfiles
-DCONF_TERM := /org/gnome/terminal/legacy/profiles:/
-DCONF_DARK_EMERALD := ${DCONF_TERM}:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/
-DCONF_MILKY := ${DCONF_TERM}:5487f76d-dd87-48f9-99f5-ca94a9baf7e6/
 
+DCONF_TERM := /org/gnome/terminal/legacy/profiles:
+DCONF_CUSTOM_TERM_PROFILE1 := 01234567-89ab-cdef-1a2b-01234567890a
+DCONF_CUSTOM_TERM_PROFILE2 := 01234567-89ab-cdef-1a2b-01234567890b
+DCONF_DARK_EMERALD := ${DCONF_TERM}/:${DCONF_CUSTOM_TERM_PROFILE1}/
+DCONF_MILKY := ${DCONF_TERM}/:${DCONF_CUSTOM_TERM_PROFILE2}/
 
 install: \
     bash \
@@ -118,8 +120,18 @@ gconf:
 		${HOMEDIR}/.gconf/desktop/gnome/peripherals/keyboard/kbd
 
 dconf:
+	mkdir -p dconf/.profiles
+	dconf list ${DCONF_TERM}/ \
+		| sed -n '/^:/s|:\(.*\)/|\1|p' \
+		| egrep -v \
+			'${DCONF_CUSTOM_TERM_PROFILE1}|${DCONF_CUSTOM_TERM_PROFILE2}' \
+			> dconf/.profiles/list.txt || true
+	xargs -I {} -a dconf/.profiles/list.txt dconf dump ${DCONF_TERM}/:{}/ \
+		> dconf/.profiles/profile.dconf
 	dconf load ${DCONF_DARK_EMERALD} < dconf/dark_emerald_terminal.dconf
 	dconf load ${DCONF_MILKY} < dconf/milky_terminal.dconf
+	dconf write ${DCONF_TERM}/list "['${DCONF_CUSTOM_TERM_PROFILE1}', '${DCONF_CUSTOM_TERM_PROFILE2}']"
+	dconf write ${DCONF_TERM}/default "'${DCONF_CUSTOM_TERM_PROFILE1}'"
 
 dconf-dump:
 	dconf dump DCONF_DARK_EMERALD > dconf/dark_emerald_terminal.dconf
