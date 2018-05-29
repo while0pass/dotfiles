@@ -1,0 +1,6 @@
+" vim: ft=vim
+
+"let g:seoul256_srgb = 1
+let g:seoul256_background = 234  " 233 is minimum
+let g:seoul256_light_background = 255  " 256 is maximum
+colorscheme seoul256

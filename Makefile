@@ -3,7 +3,8 @@ HOMEDIR := $(shell echo ~)
 HASHMARK = \#
 MAKEFDIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 ALACRI := ${MAKEFDIR}alacritty
-VUNDLEPATH := ${HOMEDIR}/.vim/bundle/Vundle.vim
+VIM := ${MAKEFDIR}vim
+VUNDLEPATH := ${VIM}/bundle/Vundle.vim
 LPPATH := ${HOMEDIR}/.liquidprompt
 ICDIFF_URL := https://raw.githubusercontent.com/jeffkaufman/icdiff/master
 PYTHON2 := https://docs.python.org/2.7/archives/python-2.7.13-docs-text.tar.bz2
@@ -73,7 +74,7 @@ git:
 
 vim:
 	rm -rf ${HOMEDIR}/.vim ${HOMEDIR}/.vimrc ${HOMEDIR}/.ctags
-	ln -s ${MAKEFDIR}vim ${HOMEDIR}/.vim
+	ln -s ${VIM} ${HOMEDIR}/.vim
 	ln -s ${HOMEDIR}/.vim/vimrc ${HOMEDIR}/.vimrc
 	ln -s ${HOMEDIR}/.vim/ctags ${HOMEDIR}/.ctags
 	mkdir -p vim/temp/
@@ -84,6 +85,14 @@ vim:
 			https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim ; \
 		vi +PlugInstall +PlugClean +qa ; \
 	fi
+	test ! -e vim/.default-dark && \
+		echo 'jellybeans' >vim/.default-dark || true
+	test ! -e vim/.default-light && \
+		echo 'one' >vim/.default-light || true
+	test ! -e vim/vimrc.d/colors/.default && \
+		ln -sfT ${VIM}/vimrc.d/colors/`cat vim/.default-dark` \
+			${VIM}/vimrc.d/colors/.default || true
+
 
 tmux:
 	rm -fr ${HOMEDIR}/.tmux.conf
