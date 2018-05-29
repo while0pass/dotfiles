@@ -1,5 +1,6 @@
 SHELL := /bin/bash
 HOMEDIR := $(shell echo ~)
+HASHMARK = \#
 MAKEFDIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 VUNDLEPATH := ${HOMEDIR}/.vim/bundle/Vundle.vim
 LPPATH := ${HOMEDIR}/.liquidprompt
@@ -41,11 +42,16 @@ export BASHRC_ADD
 alacritty:
 	rm -fr ${MAKEFDIR}alacritty/.themes
 	mkdir -p ${MAKEFDIR}alacritty/.themes
-	for i in `ls ${MAKEFDIR}alacritty/themes/*.yml`; do \
-		cat ${MAKEFDIR}alacritty/main.yml $$i \
-			>${MAKEFDIR}alacritty/.themes/`basename $$i`; done
-	rm ${HOMEDIR}/.config/alacritty/alacritty.yml
-	cp -f ${MAKEFDIR}alacritty/.themes/nord.yml ${HOMEDIR}/.config/alacritty/alacritty.yml
+	for d in `ls ${MAKEFDIR}alacritty/themes/`; do \
+		mkdir -p ${MAKEFDIR}alacritty/.themes/$$d; \
+		for i in `ls ${MAKEFDIR}alacritty/themes/$$d/*.yml`; do \
+			f=$${i${HASHMARK}${MAKEFDIR}alacritty/themes/}; \
+			cat ${MAKEFDIR}alacritty/main.yml $$i \
+				>${MAKEFDIR}alacritty/.themes/$$f; \
+		done; \
+	done
+	cp -f ${MAKEFDIR}alacritty/.themes/dark/gruvbox-dark-my.yml \
+		${HOMEDIR}/.config/alacritty/alacritty.yml
 
 bash:
 	sed -n '/${FINGERPRINT1}/,/${FINGERPRINT2}/!p' ${HOMEDIR}/.bashrc >.tempbashrc

@@ -1,4 +1,5 @@
 # Colors (Tomorrow Night)
+custom_cursor_colors: true
 colors:
   # Default colors
   primary:
