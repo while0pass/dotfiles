@@ -2,6 +2,7 @@ SHELL := /bin/bash
 HOMEDIR := $(shell echo ~)
 HASHMARK = \#
 MAKEFDIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
+ALACRI := ${MAKEFDIR}alacritty
 VUNDLEPATH := ${HOMEDIR}/.vim/bundle/Vundle.vim
 LPPATH := ${HOMEDIR}/.liquidprompt
 ICDIFF_URL := https://raw.githubusercontent.com/jeffkaufman/icdiff/master
@@ -40,18 +41,25 @@ endef
 export BASHRC_ADD
 
 alacritty:
-	rm -fr ${MAKEFDIR}alacritty/.themes
-	mkdir -p ${MAKEFDIR}alacritty/.themes
-	for d in `ls ${MAKEFDIR}alacritty/themes/`; do \
-		mkdir -p ${MAKEFDIR}alacritty/.themes/$$d; \
-		for i in `ls ${MAKEFDIR}alacritty/themes/$$d/*.yml`; do \
-			f=$${i${HASHMARK}${MAKEFDIR}alacritty/themes/}; \
-			cat ${MAKEFDIR}alacritty/main.yml $$i \
-				>${MAKEFDIR}alacritty/.themes/$$f; \
+	rm -fr ${ALACRI}/.themes
+	mkdir -p ${ALACRI}/.themes
+	for d in `ls ${ALACRI}/themes/`; do \
+		mkdir -p ${ALACRI}/.themes/$$d; \
+		for i in `ls ${ALACRI}/themes/$$d/*.yml`; do \
+			f=$${i${HASHMARK}${ALACRI}/themes/}; \
+			cat ${ALACRI}/main.yml $$i \
+				>${ALACRI}/.themes/$$f; \
 		done; \
 	done
-	cp -f ${MAKEFDIR}alacritty/.themes/dark/gruvbox-dark-my.yml \
+	cp -f ${ALACRI}/.themes/dark/gruvbox-dark-my.yml \
 		${HOMEDIR}/.config/alacritty/alacritty.yml
+	test ! -e ${ALACRI}/.default-dark && \
+		echo 'gruvbox-dark-my' >${ALACRI}/.default-dark || true
+	test ! -e ${ALACRI}/.default-light && \
+		echo 'pencil-light' >${ALACRI}/.default-light || true
+	test ! -e ${ALACRI}/.background && \
+		echo 'dark' >${ALACRI}/.background || true
+	source ${ALACRI}/bashrc; set_default_theme
 
 bash:
 	sed -n '/${FINGERPRINT1}/,/${FINGERPRINT2}/!p' ${HOMEDIR}/.bashrc >.tempbashrc
@@ -66,7 +74,6 @@ git:
 vim:
 	rm -rf ${HOMEDIR}/.vim ${HOMEDIR}/.vimrc ${HOMEDIR}/.ctags
 	ln -s ${MAKEFDIR}vim ${HOMEDIR}/.vim
-	ln -sf ${HOMEFDIR}vim ${HOMEDIR}/.config/nvim
 	ln -s ${HOMEDIR}/.vim/vimrc ${HOMEDIR}/.vimrc
 	ln -s ${HOMEDIR}/.vim/ctags ${HOMEDIR}/.ctags
 	mkdir -p vim/temp/

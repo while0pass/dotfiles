@@ -1,8 +1,16 @@
+# Поддержка 256-цветного режима в tmux
 [ -z "$TMUX" ] && export TERM=xterm-256color
+
+# Включение liquidprompt
 [[ $- = *i* ]] && source ~/.liquidprompt/liquidprompt
 
-export WORKON_HOME=~/virtualenvs
-mkdir -p $WORKON_HOME
-source /usr/local/bin/virtualenvwrapper.sh
+# Настройки для virtualenv и virtualenvwrapper
+#export WORKON_HOME=~/virtualenvs
+#mkdir -p $WORKON_HOME
+#source /usr/local/bin/virtualenvwrapper.sh
 
+# Возоможность исполнять файлы из вселенной rust
 source $HOME/.cargo/env
+
+# Средства быстрого изменения цветовой темы окружения
+source $HOME/repogitories/dotfiles/alacritty/bashrc

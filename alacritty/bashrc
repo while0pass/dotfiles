@@ -1,0 +1,35 @@
+DIR=~/repogitories/dotfiles/alacritty
+
+function _getvars() {
+    BACKGROUND=$(cat $DIR/.background)
+    THEME=$(cat $DIR/.default-$BACKGROUND)
+}
+
+function set_default_theme() {
+    _getvars
+    echo "Фон:  $BACKGROUND"
+    echo "Тема: $THEME"
+    cp $DIR/.themes/$BACKGROUND/$THEME.yml ~/.config/alacritty/alacritty.yml
+}
+
+function dark() {
+    _getvars
+    if [ $BACKGROUND == 'dark' ]
+    then
+        echo "Тема: $THEME"
+    else
+        echo 'dark' > $DIR/.background
+        set_default_theme
+    fi
+}
+
+function light() {
+    _getvars
+    if [ $BACKGROUND == 'light' ]
+    then
+        echo "Тема: $THEME"
+    else
+        echo 'light' > $DIR/.background
+        set_default_theme
+    fi
+}
