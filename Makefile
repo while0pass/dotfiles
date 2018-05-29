@@ -16,6 +16,7 @@ DCONF_DARK_EMERALD := ${DCONF_TERM}/:${DCONF_CUSTOM_TERM_PROFILE1}/
 DCONF_MILKY := ${DCONF_TERM}/:${DCONF_CUSTOM_TERM_PROFILE2}/
 
 install: \
+    alacritty \
     bash \
     git \
     vim \
@@ -36,6 +37,15 @@ source ${MAKEFDIR}bash/bashrc
 EOF
 endef
 export BASHRC_ADD
+
+alacritty:
+	rm -fr ${MAKEFDIR}alacritty/.themes
+	mkdir -p ${MAKEFDIR}alacritty/.themes
+	for i in `ls ${MAKEFDIR}alacritty/themes/*.yml`; do \
+		cat ${MAKEFDIR}alacritty/main.yml $$i \
+			>${MAKEFDIR}alacritty/.themes/`basename $$i`; done
+	rm ${HOMEDIR}/.config/alacritty/alacritty.yml
+	cp -f ${MAKEFDIR}alacritty/.themes/nord.yml ${HOMEDIR}/.config/alacritty/alacritty.yml
 
 bash:
 	sed -n '/${FINGERPRINT1}/,/${FINGERPRINT2}/!p' ${HOMEDIR}/.bashrc >.tempbashrc
@@ -143,6 +153,7 @@ docs:
 	wget ${PYTHON3} -O- | tar -xjvC ~/docs
 
 .PHONY: \
+    alacritty \
     bash \
     git \
     vim \
