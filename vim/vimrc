@@ -97,6 +97,7 @@ call plug#begin('~/.vim/plugged')
 
     """""""" OTHERS """"""""
 
+    Plug 'tmux-plugins/vim-tmux-focus-events'
     Plug 'editorconfig/editorconfig-vim'
     Plug 'tpope/vim-surround'
     Plug 'junegunn/vim-easy-align' | runtime vimrc.d/easyAlign
@@ -133,7 +134,12 @@ let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 if !exists("g:syntax_on")
     syntax enable
 endif
-runtime vimrc.d/colors/.default
+source ~/.vim/vimrc.d/colors/.default
+
+augroup colorTheme
+    autocmd BufReadPre,FileReadPre,BufWritePost,FileWritePost
+        \ * execute ":source ~/.vim/vimrc.d/colors/.default"
+augroup END
 
 " directory where the swap files are stored
 set dir=~/.vim/temp/,$HOME/Local\ Settings/Temp
