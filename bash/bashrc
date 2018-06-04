@@ -14,3 +14,6 @@ source $HOME/.cargo/env
 
 # Средства быстрого изменения цветовой темы окружения
 source $HOME/repogitories/dotfiles/alacritty/bashrc
+
+# Редактор по умолчанию
+export EDITOR=vi
