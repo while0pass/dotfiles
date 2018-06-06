@@ -25,11 +25,9 @@ install: \
     vim \
     tmux \
     icdiff \
-    xneur \
     ipython \
     liquidprompt \
-    docs \
-    dconf
+    docs
 
 define BASHRC_ADD
 cat <<EOF >>.tempbashrc
@@ -61,7 +59,7 @@ alacritty:
 	test ! -e ${ALACRI}/.background && \
 		echo 'dark' >${ALACRI}/.background || true
 	source ${ALACRI}/bashrc; set_default_theme
-	sudo ln -s ${ALACRI}/alacritty.desktop /usr/share/applications/alacritty.desktop
+	sudo ln -sfT ${ALACRI}/alacritty.desktop /usr/share/applications/alacritty.desktop
 
 bash:
 	sed -n '/${FINGERPRINT1}/,/${FINGERPRINT2}/!p' ${HOMEDIR}/.bashrc >.tempbashrc
