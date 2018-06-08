@@ -1,16 +1,17 @@
 [Desktop Entry]
-Name=Alacritty Terminal
-Comment=Use the command line
-Keywords=shell;prompt;command;commandline;cmd;
+Type=Application
 TryExec=alacritty
 Exec=alacritty
 Icon=utilities-terminal
-Type=Application
-X-GNOME-DocPath=https://github.com/jwilm/alacritty/wiki
-Categories=GNOME;GTK;System;TerminalEmulator;
-StartupNotify=true
-X-GNOME-SingleWindow=false
-OnlyShowIn=GNOME;Unity;
-Actions=new-window
-X-Ubuntu-Gettext-Domain=alacritty
-X-AppStream-Ignore=true
+Terminal=false
+Categories=System;TerminalEmulator;
+
+Name=Alacritty
+GenericName=Terminal
+Comment=A cross-platform, GPU enhanced terminal emulator
+StartupWMClass=Alacritty
+Actions=New;
+
+[Desktop Action New]
+Name=New Terminal
+Exec=alacritty
