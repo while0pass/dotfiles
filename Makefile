@@ -19,6 +19,7 @@ DCONF_DARK_EMERALD := ${DCONF_TERM}/:${DCONF_CUSTOM_TERM_PROFILE1}/
 DCONF_MILKY := ${DCONF_TERM}/:${DCONF_CUSTOM_TERM_PROFILE2}/
 
 install: \
+    4nc \
     alacritty \
     bash \
     git \
@@ -38,6 +39,13 @@ source ${MAKEFDIR}bash/bashrc
 EOF
 endef
 export BASHRC_ADD
+
+4nc:
+	mkdir -p ${HOMEDIR}/.local/share/fonts
+	base64 -d ${MAKEFDIR}4nc/opp0821 | \
+		tar --lzma -C ${HOMEDIR}/.local/share/fonts/ -xf -
+	chmod 644 ${HOMEDIR}/.local/share/fonts/*.otf
+	fc-cache -fv	
 
 alacritty:
 	rm -fr ${ALACRI}/.themes
@@ -174,6 +182,7 @@ docs:
 	wget ${PYTHON3} -O- | tar -xjvC ~/docs
 
 .PHONY: \
+    4nc \
     alacritty \
     bash \
     git \
