@@ -28,6 +28,7 @@ install: \
     tmux \
     liquidprompt \
     icdiff \
+    pips \
     pyenv \
     ipython \
     docs \

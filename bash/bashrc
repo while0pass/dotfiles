@@ -18,6 +18,9 @@ source $HOME/.cargo/env
 # Средства быстрого изменения цветовой темы окружения
 source $HOME/repogitories/dotfiles/alacritty/bashrc
 
+# Автокомплит для pipenv
+source $HOME/repogitories/dotfiles/pipenv/bashrc
+
 
 ###############  Важно!!!  ######################
 # Этот фрагмент должен обязательно идти         #
