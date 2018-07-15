@@ -18,17 +18,20 @@ DCONF_CUSTOM_TERM_PROFILE2 := 01234567-89ab-cdef-1a2b-01234567890b
 DCONF_DARK_EMERALD := ${DCONF_TERM}/:${DCONF_CUSTOM_TERM_PROFILE1}/
 DCONF_MILKY := ${DCONF_TERM}/:${DCONF_CUSTOM_TERM_PROFILE2}/
 
+PYENV_ROOT := ${HOMEDIR}/.pyenv
+
 install: \
     4nc \
     alacritty \
     bash \
     git \
-    vim \
     tmux \
-    icdiff \
-    ipython \
     liquidprompt \
-    docs
+    icdiff \
+    pyenv \
+    ipython \
+    docs \
+    vim
 
 define BASHRC_ADD
 cat <<EOF >>.tempbashrc
@@ -181,18 +184,27 @@ docs:
 	wget ${PYTHON2} -O- | tar -xjvC ~/docs
 	wget ${PYTHON3} -O- | tar -xjvC ~/docs
 
+pyenv:
+	if [ -d ${PYENV_ROOT} ]; then \
+		cd ${PYENV_ROOT}; \
+		git pull origin master; \
+	else \
+		git clone https://github.com/pyenv/pyenv.git ${PYENV_ROOT}; \
+	fi
+
 .PHONY: \
     4nc \
     alacritty \
     bash \
+    docs \
+    dconf \
+    gconf \
     git \
-    vim \
-    tmux \
     icdiff \
-    xneur \
     ipython \
     liquidprompt \
     pips \
-    docs \
-    dconf \
-    gconf
+    pyenv \
+    tmux \
+    vim \
+    xneur

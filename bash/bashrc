@@ -1,8 +1,11 @@
 # Поддержка 256-цветного режима в tmux
 [ -z "$TMUX" ] && export TERM=xterm-256color
 
-# Включение liquidprompt
+# Включение liquidprompt только для интерактивных оболочек
 [[ $- = *i* ]] && source ~/.liquidprompt/liquidprompt
+
+# Редактор по умолчанию
+export EDITOR=vi
 
 # Настройки для virtualenv и virtualenvwrapper
 #export WORKON_HOME=~/virtualenvs
@@ -15,5 +18,10 @@ source $HOME/.cargo/env
 # Средства быстрого изменения цветовой темы окружения
 source $HOME/repogitories/dotfiles/alacritty/bashrc
 
-# Редактор по умолчанию
-export EDITOR=vi
+
+###############  Важно!!!  ######################
+# Этот фрагмент должен обязательно идти         #
+# в самом конце, чтобы pyenv работал правильно. #
+#################################################
+# Активация pyenv
+source $HOME/repogitories/dotfiles/pyenv/bashrc
