@@ -15,6 +15,9 @@ export EDITOR=vi
 # Возоможность исполнять файлы из вселенной rust
 source $HOME/.cargo/env
 
+# Возоможность исполнять пакеты yarn
+test -n "$(which yarn)" && export PATH="$(yarn global bin):$PATH"
+
 # Средства быстрого изменения цветовой темы окружения
 source $HOME/repogitories/dotfiles/alacritty/bashrc
 
