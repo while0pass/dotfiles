@@ -35,7 +35,7 @@ map <c-h> <c-w>h
 set fo=tcq1
 set hlsearch " highlighting results while searching
 
-set grepprg=ack-grep
+set grepprg=ag
 
 set path+=~/repogitories
 
@@ -64,18 +64,20 @@ call plug#begin('~/.vim/plugged')
     Plug 'davidhalter/jedi-vim', { 'for': 'python' } | runtime vimrc.d/jedivim
 
     " Emmet
-    Plug 'mattn/emmet-vim', { 'for': ['html', 'css',
-                                    \ 'stylus', 'scss', 'sass', 'less'] }
+    Plug 'mattn/emmet-vim',
+         \ { 'for': ['html', 'css', 'stylus', 'scss', 'sass', 'less'] }
 
     """""""" SYNTAX HIGHLIGHTING """"""""
 
     Plug 'othree/yajs.vim', { 'for': 'javascript' }
     Plug 'vim-scripts/vim-stylus', { 'for': 'stylus' }
-    " Подсветка литералов цвета соответствующим цветом
-    Plug 'lilydjwg/colorizer', { 'for': ['css',
-                                       \ 'stylus', 'scss', 'sass', 'less'] }
+    Plug 'Glench/Vim-Jinja2-Syntax'
     Plug 'rust-lang/rust.vim'
     Plug 'saltstack/salt-vim'
+    Plug 'hail2u/vim-css3-syntax'
+    " Подсветка литералов цвета соответствующим цветом
+    Plug 'lilydjwg/colorizer',
+         \ { 'for': ['css', 'stylus', 'scss', 'sass', 'less'] }
 
     " 256-color schemes
     "Plug 'godlygeek/csapprox'
