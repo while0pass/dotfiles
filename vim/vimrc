@@ -136,10 +136,9 @@ if !exists("g:syntax_on")
 endif
 source ~/.vim/vimrc.d/colors/.default
 
-augroup colorTheme
-    autocmd BufReadPre,FileReadPre,BufWritePost,FileWritePost
-        \ * execute ":source ~/.vim/vimrc.d/colors/.default"
-augroup END
+" Run server to react to changes in color themes
+" (relies on +clientserver feature).
+call remote_startserver('nurono')
 
 " directory where the swap files are stored
 set dir=~/.vim/temp/,$HOME/Local\ Settings/Temp

@@ -1,10 +1,17 @@
 TTY_DIR=~/repogitories/dotfiles/alacritty
 VIM_DIR=~/repogitories/dotfiles/vim
+VIM_DIR_THEMES=$VIM_DIR/vimrc.d/colors
+VIM_DEFAULT_THEME=$VIM_DIR_THEMES/.default
 
 function _getvars() {
     BACKGROUND=$(cat $TTY_DIR/.background)
     TTY_THEME=$(cat $TTY_DIR/.default-$BACKGROUND)
     VIM_THEME=$(cat $VIM_DIR/.default-$BACKGROUND)
+}
+
+function _notify_vim() {
+    vim --serverlist | grep -i nurono | xargs -I SRVNAME \
+        vim --servername SRVNAME --remote-send ":source $VIM_DEFAULT_THEME<CR>"
 }
 
 function set_default_theme() {
@@ -13,7 +20,7 @@ function set_default_theme() {
     echo "Тема tty:  $TTY_THEME"
     echo "Тема vim:  $VIM_THEME"
     cp $TTY_DIR/.themes/$BACKGROUND/$TTY_THEME.yml ~/.config/alacritty/alacritty.yml
-    ln -sfT $VIM_DIR/vimrc.d/colors/$VIM_THEME $VIM_DIR/vimrc.d/colors/.default
+    ln -sfT $VIM_DIR_THEMES/$VIM_THEME $VIM_DEFAULT_THEME
 }
 
 function dark() {
@@ -25,6 +32,7 @@ function dark() {
     else
         echo 'dark' > $TTY_DIR/.background
         set_default_theme
+        _notify_vim
     fi
 }
 
@@ -37,5 +45,6 @@ function light() {
     else
         echo 'light' > $TTY_DIR/.background
         set_default_theme
+        _notify_vim
     fi
 }
