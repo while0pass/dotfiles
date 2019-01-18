@@ -151,3 +151,7 @@ set backupdir=~/.vim/temp/,$HOME/Local\ Settings/Temp
 au CursorHold,BufEnter,WinEnter,BufWinEnter,TabEnter * checktime
 
 nmap gb :buffers<CR>
+
+" Add hyphen to the list of characters identified as word characters
+" for *.css, *.html, *.xml
+au FileType css\|html\|xml setlocal iskeyword+=-
