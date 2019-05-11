@@ -95,7 +95,8 @@ call plug#begin('~/.vim/plugged')
 
     """""""" SYNTAX CHECKERS """"""""
 
-    Plug 'vim-syntastic/syntastic' | runtime vimrc.d/syntastic
+    "Plug 'vim-syntastic/syntastic' | runtime vimrc.d/syntastic
+    Plug 'w0rp/ale' | runtime vimrc.d/ale
 
     """""""" OTHERS """"""""
 
@@ -106,7 +107,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'easymotion/vim-easymotion'
     Plug 'jeetsukumaran/vim-indentwise'
     Plug 'terryma/vim-multiple-cursors' | runtime vimrc.d/multipleCursors
-    Plug 'tomtom/quickfixsigns_vim'
+    "Plug 'tomtom/quickfixsigns_vim'
     Plug 'junegunn/limelight.vim', { 'on': 'Goyo' }
     Plug 'junegunn/goyo.vim', { 'on': 'Goyo' } | runtime vimrc.d/goyo
 
