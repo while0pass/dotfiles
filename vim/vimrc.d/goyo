@@ -8,13 +8,15 @@ function! s:goyo_enter()
   set noshowmode
   set noshowcmd
   " Запустить limelight
-  Limelight
-  QuickfixsignsDisable
+  "Limelight
+  "QuickfixsignsDisable
+
   " Постоянная прокрутка экрана.
   " NOTE: Не реализована через `set scrolloff=999`, потому что активная строка
   " всегда будет в центре по вертикали. Удобнее, чтобы это строка была выше,
   " поэтому переопределяем клавиши перемещения курсора. На нужную высоту можно
-  " выйти с помощью сочетаний gj gk.
+  " выйти с помощью сочетаний gj gk или прыжком на несколько строк вниз,
+  " например, на 7 строк -- будет ` :+7 `.
   set scrolloff=0
   noremap j j
   noremap k k
@@ -27,8 +29,9 @@ function! s:goyo_leave()
   silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
   set showmode
   set showcmd
-  Limelight!
-  QuickfixsignsEnable
+  "Limelight!
+  "QuickfixsignsEnable
+
   " Отключение постоянной прокрутки экрана
   set scrolloff=5
   noremap j j
@@ -37,3 +40,4 @@ endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
+nnoremap <Leader>z :Goyo<CR>
