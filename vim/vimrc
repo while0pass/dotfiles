@@ -53,9 +53,9 @@ call plug#begin('~/.vim/plugged')
 
     """""""" AUTOCOMPLETE """"""""
 
-    " Autocompletion for C/C++ (clang), JavaScript (tern) and Rust (racer)
+    " Autocompletion for C/C++ (clang), JavaScript (TypeScript) and Rust
     Plug 'Valloric/YouCompleteMe', { 'do':
-        \ './install.py --clang-completer --tern-completer --racer-completer',
+        \ './install.py --clang-completer --ts-completer --rust-completer',
         \ 'for': ['c', 'cpp', 'javascript', 'rust'] }
     Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
     runtime vimrc.d/youcompleteme_ultisnips
