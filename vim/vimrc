@@ -53,36 +53,32 @@ call plug#begin('~/.vim/plugged')
 
     """""""" AUTOCOMPLETE """"""""
 
-    " Autocompletion for C/C++ (clang), JavaScript (TypeScript) and Rust
-    Plug 'Valloric/YouCompleteMe', { 'do':
-        \ './install.py --clang-completer --ts-completer --rust-completer',
-        \ 'for': ['c', 'cpp', 'javascript', 'rust'] }
-    Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-    runtime vimrc.d/youcompleteme_ultisnips
-
-    " Python autocompletion
-    Plug 'davidhalter/jedi-vim', { 'for': 'python' } | runtime vimrc.d/jedivim
-
-    " Emmet
-    Plug 'mattn/emmet-vim',
-         \ { 'for': ['html', 'css', 'stylus', 'scss', 'sass', 'less'] }
+    " LSP clients (Language Server Protocol);
+    " autocompletion, snippets, syntax checking
+    Plug 'honza/vim-snippets'  " set of snippets
+    Plug 'SirVer/ultisnips' | runtime vimrc.d/ultisnips
+    Plug 'davidhalter/jedi-vim', {'for': 'python'} | runtime vimrc.d/jedivim
+    Plug 'w0rp/ale' | runtime vimrc.d/ale
+    Plug 'neoclide/coc.nvim', {'branch': 'release'} | runtime vimrc.d/coc
 
     """""""" SYNTAX HIGHLIGHTING """"""""
 
-    Plug 'othree/yajs.vim', { 'for': 'javascript' }
-    Plug 'vim-scripts/vim-stylus', { 'for': 'stylus' }
+    Plug 'othree/yajs.vim', {'for': 'javascript'}
+    Plug 'vim-scripts/vim-stylus', {'for': 'stylus'}
     Plug 'Glench/Vim-Jinja2-Syntax'
     Plug 'rust-lang/rust.vim'
     Plug 'saltstack/salt-vim'
     Plug 'hail2u/vim-css3-syntax'
+    Plug 'lervag/vimtex'
+
     " Подсветка литералов цвета соответствующим цветом
-    Plug 'lilydjwg/colorizer',
-         \ { 'for': ['css', 'stylus', 'scss', 'sass', 'less'] }
+    "Plug 'lilydjwg/colorizer',
+    "     \ {'for': ['css', 'stylus', 'scss', 'sass', 'less']}
 
     " 256-color schemes
     "Plug 'godlygeek/csapprox'
-    "Plug 'vim-scripts/3DGlasses.vim'
-    "Plug 'fugalh/desert.vim'
+    Plug 'vim-scripts/3DGlasses.vim'
+    Plug 'fugalh/desert.vim'
     Plug 'vim-scripts/wombat256.vim'
     Plug 'altercation/vim-colors-solarized'
     Plug 'chriskempson/vim-tomorrow-theme'
@@ -92,11 +88,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'arcticicestudio/nord-vim'
     Plug 'nightsense/vimspectr'
     Plug 'rakr/vim-one'
-
-    """""""" SYNTAX CHECKERS """"""""
-
-    "Plug 'vim-syntastic/syntastic' | runtime vimrc.d/syntastic
-    Plug 'w0rp/ale' | runtime vimrc.d/ale
 
     """""""" OTHERS """"""""
 
@@ -108,8 +99,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'jeetsukumaran/vim-indentwise'
     Plug 'terryma/vim-multiple-cursors' | runtime vimrc.d/multipleCursors
     "Plug 'tomtom/quickfixsigns_vim'
-    Plug 'junegunn/limelight.vim', { 'on': 'Goyo' }
-    Plug 'junegunn/goyo.vim', { 'on': 'Goyo' } | runtime vimrc.d/goyo
+    Plug 'junegunn/limelight.vim', {'on': 'Goyo'}
+    Plug 'junegunn/goyo.vim', {'on': 'Goyo'} | runtime vimrc.d/goyo
 
     " Filetree
     Plug 'scrooloose/nerdtree' | Plug 'jistr/vim-nerdtree-tabs'

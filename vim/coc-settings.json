@@ -1,0 +1,11 @@
+{
+    "suggest.defaultSortMethod": "alphabetical",
+    "suggest.autoTrigger": "trigger",
+
+    "snippets.snipmate.enable": true,
+    "snippets.extends": {
+        "cpp": ["c"],
+        "jinja.html": ["jinja", "html"],
+        "jinja": ["html"]
+    }
+}
