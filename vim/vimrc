@@ -14,7 +14,7 @@ set colorcolumn=80
 " with special characters \u2592\u2591 and \u2593
 " They also may be '>-' and '@':
 " :set listchars=tab:>-,trail:@
-set lcs=tab:▒░,trail:▓
+set lcs=tab:▒░,trail:▓,nbsp:░
 set list
 
 set foldmethod=indent
