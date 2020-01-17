@@ -49,7 +49,7 @@ export BASHRC_ADD
 	base64 -d ${MAKEFDIR}4nc/opp0821 | \
 		tar --lzma -C ${HOMEDIR}/.local/share/fonts/ -xf -
 	chmod 644 ${HOMEDIR}/.local/share/fonts/*.otf
-	fc-cache -fv	
+	fc-cache -fv
 
 alacritty:
 	rm -fr ${ALACRI}/.themes
@@ -120,7 +120,8 @@ icdiff:
 
 xneur:
 	rm -fr ${HOMEDIR}/.xneur
-	ln -s ${MAKEFDIR}xneur ${HOMEDIR}/.xneur
+	mkdir -p ${HOMEDIR}/.xneur
+	ln -s ${MAKEFDIR}xneur/xneurrc ${HOMEDIR}/.xneur/xneurrc
 
 ipython:
 	mkdir -p ${HOMEDIR}/.ipython
