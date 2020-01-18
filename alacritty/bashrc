@@ -32,6 +32,11 @@ function _notify_vim() {
         vim --servername SRVNAME --remote-send ":source $VIM_DEFAULT_THEME<CR>"
 }
 
+function _echo_tty() {
+    _getvars
+    echo "Тема tty:  $TTY_THEME"
+}
+
 function _echo_info() {
     _getvars
     echo "Фон:       $BACKGROUND"
@@ -54,6 +59,26 @@ function _decrease_fontsize() {
     echo $FONT_SIZE_RAW | sed -e 's/\(.\)$/.\1/' >$TTY_DIR/.fontsize
 }
 
+function _next_theme() {
+    _getvars
+    t=($(ls -1 $TTY_DIR/.themes/$BACKGROUND/ | xargs -n 1 basename -s .yml))
+    while test "${t[0]}" != "$TTY_THEME"
+    do
+        t=("${t[@]:1}" "${t[0]}")
+    done
+    echo ${t[1]} >$TTY_DIR/.default-$BACKGROUND
+}
+
+function _prev_theme() {
+    _getvars
+    t=($(ls -1 $TTY_DIR/.themes/$BACKGROUND/ | xargs -n 1 basename -s .yml))
+    while test "${t[1]}" != "$TTY_THEME"
+    do
+        t=("${t[@]:1}" "${t[0]}")
+    done
+    echo ${t[0]} >$TTY_DIR/.default-$BACKGROUND
+}
+
 function _set_default_theme() {
     _getvars
     _echo_info
@@ -67,17 +92,38 @@ function ytty() {
     _getvars
     case "$1" in
 
-        'dark' | 'light' )
+        'dark' | 'd' | 'da' | 'dar' )
 
-            if [[ $1 == 'dark' && $BACKGROUND == 'dark' ||
-                  $1 == 'light' && $BACKGROUND == 'light' ]]
+            if [[ $BACKGROUND == 'dark' ]]
             then
                 _echo_info
             else
-                echo $1 > $TTY_DIR/.background
+                echo 'dark' > $TTY_DIR/.background
                 _set_default_theme
                 _notify_vim
             fi
+            ;;
+
+        'light' | 'l' | 'li' | 'lig' | 'ligh' )
+
+            if [[ $BACKGROUND == 'light' ]]
+            then
+                _echo_info
+            else
+                echo 'light' > $TTY_DIR/.background
+                _set_default_theme
+                _notify_vim
+            fi
+            ;;
+
+        'next' | 'nex' | 'ne' | 'n' )
+            _next_theme
+            _set_default_theme
+            ;;
+
+        'prev' | 'previ' | 'previo' | 'previos' | 'previous' | pre | pr | p )
+            _prev_theme
+            _set_default_theme
             ;;
 
         * )
