@@ -62,15 +62,15 @@ alacritty:
 				>${ALACRI}/.themes/$$f; \
 		done; \
 	done
-	cp -f ${ALACRI}/.themes/dark/gruvbox-dark-my.yml \
-		${HOMEDIR}/.config/alacritty/alacritty.yml
-	test ! -e ${ALACRI}/.default-dark && \
-		echo 'gruvbox-dark-my' >${ALACRI}/.default-dark || true
-	test ! -e ${ALACRI}/.default-light && \
-		echo 'pencil-light' >${ALACRI}/.default-light || true
-	test ! -e ${ALACRI}/.background && \
-		echo 'dark' >${ALACRI}/.background || true
-	source ${ALACRI}/bashrc; set_default_theme
+	test ! -e ${ALACRI}/.fontsize && { \
+		source ${ALACRI}/bashrc ; _set_default_fontsize; } || true
+	test ! -e ${ALACRI}/.background && { \
+		source ${ALACRI}/bashrc ; _set_default_background; } || true
+	test ! -e ${ALACRI}/.default-dark && { \
+		source ${ALACRI}/bashrc ; _set_default_dark; } || true
+	test ! -e ${ALACRI}/.default-light && { \
+		source ${ALACRI}/bashrc ; _set_default_light; } || true
+	source ${ALACRI}/bashrc; _set_default_theme
 #	sudo ln -sfT ${ALACRI}/alacritty.desktop /usr/share/applications/alacritty.desktop
 
 bash:

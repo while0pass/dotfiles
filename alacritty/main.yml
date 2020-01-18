@@ -175,8 +175,9 @@ tabspaces: 8
   # Point size
   #size: 11.0
 
-_fontSize: &fontSize 11.0
 _fontFamily: &fontFamily Pragmata Pro
+# Макросом добавляем fontSize в начало файла
+#_fontSize: &fontSize 11.0
 font:
   normal:
     family: *fontFamily
@@ -498,7 +499,7 @@ live_config_reload: true
 # binding with the same triggers is defined. To unset a default binding, it can
 # be mapped to the `ReceiveChar` action. Alternatively, you can use `None` for
 # a no-op if you do not wish to receive input characters for that binding.
-#key_bindings:
+key_bindings:
   # (Windows, Linux, and BSD only)
   #- { key: V,        mods: Control|Shift, action: Paste            }
   #- { key: C,        mods: Control|Shift, action: Copy             }
@@ -508,6 +509,33 @@ live_config_reload: true
   #- { key: Add,      mods: Control,       action: IncreaseFontSize }
   #- { key: Subtract, mods: Control,       action: DecreaseFontSize }
   #- { key: Minus,    mods: Control,       action: DecreaseFontSize }
+  - key: Key0
+    mods: Control
+    command:
+      program: 'bash'
+      args:
+        - '-c'
+        - 'cd ~/repogitories/dotfiles/alacritty; source bashrc; _set_default_fontsize; _set_default_theme'
+  - key: Add
+    mods: Control
+    command:
+      program: 'bash'
+      args: ['-c', 'cd ~/repogitories/dotfiles/alacritty; source bashrc; _increase_fontsize; _set_default_theme']
+  - key: Equals
+    mods: Control
+    command:
+      program: 'bash'
+      args: ['-c', 'cd ~/repogitories/dotfiles/alacritty; source bashrc; _increase_fontsize; _set_default_theme']
+  - key: Minus
+    mods: Control
+    command:
+      program: 'bash'
+      args: ['-c', 'cd ~/repogitories/dotfiles/alacritty; source bashrc; _decrease_fontsize; _set_default_theme']
+  - key: Subtract
+    mods: Control
+    command:
+      program: 'bash'
+      args: ['-c', 'cd ~/repogitories/dotfiles/alacritty; source bashrc; _decrease_fontsize; _set_default_theme']
 
   # (Windows only)
   #- { key: Return,   mods: Alt,           action: ToggleFullscreen }
