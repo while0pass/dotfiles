@@ -79,13 +79,33 @@ function _prev_theme() {
     echo ${t[0]} >$TTY_DIR/.default-$BACKGROUND
 }
 
+function _next_vim_theme() {
+    _getvars
+    t=($(ls -1 $VIM_DIR_THEMES/$BACKGROUND/))
+    while test "${t[0]}" != "$VIM_THEME"
+    do
+        t=("${t[@]:1}" "${t[0]}")
+    done
+    echo ${t[1]} >$VIM_DIR/.default-$BACKGROUND
+}
+
+function _prev_vim_theme() {
+    _getvars
+    t=($(ls -1 $VIM_DIR_THEMES/$BACKGROUND/))
+    while test "${t[1]}" != "$VIM_THEME"
+    do
+        t=("${t[@]:1}" "${t[0]}")
+    done
+    echo ${t[0]} >$VIM_DIR/.default-$BACKGROUND
+}
+
 function _set_default_theme() {
     _getvars
     _echo_info
     cat <(echo '_fontSize: &fontSize' $FONT_SIZE) \
         $TTY_DIR/.themes/$BACKGROUND/$TTY_THEME.yml \
         >~/.config/alacritty/alacritty.yml
-    ln -sfT $VIM_DIR_THEMES/$VIM_THEME $VIM_DEFAULT_THEME
+    ln -sfT $VIM_DIR_THEMES/$BACKGROUND/$VIM_THEME $VIM_DEFAULT_THEME
 }
 
 function ytty() {
@@ -124,6 +144,30 @@ function ytty() {
         'prev' | 'previ' | 'previo' | 'previos' | 'previous' | pre | pr | p )
             _prev_theme
             _set_default_theme
+            ;;
+
+        'vim' | 'vi' )
+
+            case $2 in
+
+                'next' | 'nex' | 'ne' | 'n' )
+
+                    _next_vim_theme
+                    _set_default_theme
+                    _notify_vim
+                    ;;
+
+                'prev' | previ | previo | previos | previous | pre | pr | p )
+
+                    _prev_vim_theme
+                    _set_default_theme
+                    _notify_vim
+                    ;;
+
+                * )
+                    _echo_info
+                    ;;
+            esac
             ;;
 
         * )
