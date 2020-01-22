@@ -17,6 +17,12 @@ set colorcolumn=80
 set lcs=tab:▒░,trail:▓,nbsp:░
 set list
 
+" Change showbreak when line numbers are on or off.
+" Show no char when line numbers are on, and \u21aa otherwise.
+au OptionSet number :if v:option_new | set showbreak= |
+                   \ else | set showbreak=↪ |
+                   \ endif
+
 set foldmethod=indent
 set foldlevel=99
 
