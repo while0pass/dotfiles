@@ -77,6 +77,7 @@ bash:
 	sed -n '/${FINGERPRINT1}/,/${FINGERPRINT2}/!p' ${HOMEDIR}/.bashrc >.tempbashrc
 	bash -c "$$BASHRC_ADD"
 	mv .tempbashrc ${HOMEDIR}/.bashrc
+	source ${HOMEDIR}/.bashrc
 
 git:
 	rm -fr ${HOMEDIR}/.config/git
@@ -110,7 +111,7 @@ tmux:
 	test ! -h ${HOMEDIR}/.tmux/dotfiles && \
 		ln -sfT ${MAKEFDIR}tmux/ ${HOMEDIR}/.tmux/dotfiles || true
 	rm -fr ${HOMEDIR}/.tmux.conf
-	ln -s ${HOMEDIR}/.tmux/tmux.conf ${HOMEDIR}/.tmux.conf
+	ln -sfT ${HOMEDIR}/.tmux/dotfiles/tmux.conf ${HOMEDIR}/.tmux.conf
 	if [ ! -e ${HOMEDIR}/.tmux/plugins/tpm ]; then \
 		git clone https://github.com/tmux-plugins/tpm \
 				${HOMEDIR}/.tmux/plugins/tpm; \
