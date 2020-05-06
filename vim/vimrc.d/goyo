@@ -9,7 +9,7 @@ function! s:goyo_enter()
   set noshowcmd
   " Запустить limelight
   "Limelight
-  "QuickfixsignsDisable
+  QuickfixsignsDisable
 
   " Постоянная прокрутка экрана.
   " NOTE: Не реализована через `set scrolloff=999`, потому что активная строка
@@ -30,7 +30,7 @@ function! s:goyo_leave()
   set showmode
   set showcmd
   "Limelight!
-  "QuickfixsignsEnable
+  QuickfixsignsEnable
 
   " Отключение постоянной прокрутки экрана
   set scrolloff=5
