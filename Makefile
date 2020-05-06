@@ -106,8 +106,11 @@ vim:
 
 
 tmux:
+	test ! -d ${HOMEDIR}/.tmux && mkdir -p ${HOMEDIR}/.tmux || true
+	test ! -h ${HOMEDIR}/.tmux/dotfiles && \
+		ln -sfT ${MAKEFDIR}tmux/ ${HOMEDIR}/.tmux/dotfiles || true
 	rm -fr ${HOMEDIR}/.tmux.conf
-	ln -s ${MAKEFDIR}tmux/tmux.conf ${HOMEDIR}/.tmux.conf
+	ln -s ${HOMEDIR}/.tmux/tmux.conf ${HOMEDIR}/.tmux.conf
 	if [ ! -e ${HOMEDIR}/.tmux/plugins/tpm ]; then \
 		git clone https://github.com/tmux-plugins/tpm \
 				${HOMEDIR}/.tmux/plugins/tpm; \

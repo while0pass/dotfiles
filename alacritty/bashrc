@@ -27,9 +27,13 @@ function _getvars() {
     FONT_SIZE=$(cat $TTY_DIR/.fontsize)
 }
 
-function _notify_vim() {
+function _notify_apps() {
+    # Notify vim
     vim --serverlist | grep -i nurono | xargs -I SRVNAME \
         vim --servername SRVNAME --remote-send ":source $VIM_DEFAULT_THEME<CR>"
+
+    # Update tmux conf
+    tmux source-file ~/.tmux/dotfiles/$BACKGROUND
 }
 
 function _echo_tty() {
@@ -120,7 +124,7 @@ function ytty() {
             else
                 echo 'dark' > $TTY_DIR/.background
                 _set_default_theme
-                _notify_vim
+                _notify_apps
             fi
             ;;
 
@@ -132,7 +136,7 @@ function ytty() {
             else
                 echo 'light' > $TTY_DIR/.background
                 _set_default_theme
-                _notify_vim
+                _notify_apps
             fi
             ;;
 
@@ -154,14 +158,14 @@ function ytty() {
 
                     _next_vim_theme
                     _set_default_theme
-                    _notify_vim
+                    _notify_apps
                     ;;
 
                 'prev' | previ | previo | previos | previous | pre | pr | p )
 
                     _prev_vim_theme
                     _set_default_theme
-                    _notify_vim
+                    _notify_apps
                     ;;
 
                 * )
