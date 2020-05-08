@@ -292,10 +292,14 @@ live_config_reload: true
 #   - (macOS) /bin/bash --login
 #   - (Linux/BSD) user login shell
 #   - (Windows) powershell
-#shell:
-#  program: /bin/bash
-#  args:
-#    - --login
+shell:
+  program: /bin/bash
+  args:
+    - '-lic'
+    - >-
+      (tmux list-sessions -F '#{session_name}' 2>/dev/null | grep -q terminal)
+      && tmux attach-session -t terminal
+      || _mytmux new-session -s terminal
 
 # Startup directory
 #

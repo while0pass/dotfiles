@@ -1,3 +1,18 @@
+BGPIDS=~/.tmux/bgpids
+
+function _get_keyboard_layout() {
+    gsettings get org.gnome.desktop.input-sources mru-sources | cut -d\' -f4
+}
+
+function _mytmux() {
+    # Отслеживает переключение раскладки клавиатуры и оповещает об этом tmux
+    (gsettings monitor org.gnome.desktop.input-sources mru-sources \
+        | xargs -L1 bash -c 'tmux refresh-client -S') & disown ; echo $! >>$BGPIDS
+    tmux "$@"
+    xargs -a $BGPIDS -r -L1 -I{} kill -TERM -- '-{}'
+    rm -f $BGPIDS
+}
+
 TTY_DIR=~/repogitories/dotfiles/alacritty
 VIM_DIR=~/repogitories/dotfiles/vim
 VIM_DIR_THEMES=$VIM_DIR/vimrc.d/colors
