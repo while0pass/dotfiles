@@ -26,6 +26,7 @@ install: \
     bash \
     git \
     tmux \
+    tmuxp \
     liquidprompt \
     icdiff \
     pips \
@@ -116,6 +117,9 @@ tmux:
 		git clone https://github.com/tmux-plugins/tpm \
 				${HOMEDIR}/.tmux/plugins/tpm; \
 	fi
+
+tmuxp:
+	$(MAKE) -C ../dotfiles-tmuxp
 
 icdiff:
 	sudo wget ${ICDIFF_URL}/icdiff -O /usr/local/bin/icdiff
@@ -212,5 +216,6 @@ pyenv:
     pips \
     pyenv \
     tmux \
+    tmuxp \
     vim \
     xneur
