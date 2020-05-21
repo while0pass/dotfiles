@@ -4,19 +4,12 @@ HASHMARK = \#
 MAKEFDIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 ALACRI := ${MAKEFDIR}alacritty
 VIM := ${MAKEFDIR}vim
-VUNDLEPATH := ${VIM}/bundle/Vundle.vim
 LPPATH := ${HOMEDIR}/.liquidprompt
 ICDIFF_URL := https://raw.githubusercontent.com/jeffkaufman/icdiff/master
-PYTHON2 := https://docs.python.org/2.7/archives/python-2.7.13-docs-text.tar.bz2
-PYTHON3 := https://docs.python.org/3.6/archives/python-3.6.1-docs-text.tar.bz2
+PYTHON2 := https://docs.python.org/2.7/archives/python-2.7.18-docs-text.tar.bz2
+PYTHON3 := https://docs.python.org/3.8/archives/python-3.8.3-docs-text.tar.bz2
 FINGERPRINT1 := BEGIN FROM dotfiles
 FINGERPRINT2 := END FROM dotfiles
-
-DCONF_TERM := /org/gnome/terminal/legacy/profiles:
-DCONF_CUSTOM_TERM_PROFILE1 := 01234567-89ab-cdef-1a2b-01234567890a
-DCONF_CUSTOM_TERM_PROFILE2 := 01234567-89ab-cdef-1a2b-01234567890b
-DCONF_DARK_EMERALD := ${DCONF_TERM}/:${DCONF_CUSTOM_TERM_PROFILE1}/
-DCONF_MILKY := ${DCONF_TERM}/:${DCONF_CUSTOM_TERM_PROFILE2}/
 
 PYENV_ROOT := ${HOMEDIR}/.pyenv
 
@@ -156,39 +149,6 @@ liquidprompt:
 pips:
 	sudo pip install -r packages/pip.list
 
-gconf:
-	[[ -d ${HOMEDIR}/.gconf/apps/gnome-terminal ]] \
-		|| mkdir -p ${HOMEDIR}/.gconf/apps/gnome-terminal
-	[[ -d ${HOMEDIR}/.gconf/apps/gnome-terminal.bak ]] \
-		|| cp -R ${HOMEDIR}/.gconf/apps/gnome-terminal{,.bak}
-	rm -fr ${HOMEDIR}/.gconf/apps/gnome-terminal
-	ln -s ${MAKEFDIR}gconf/apps/gnome-terminal ${HOMEDIR}/.gconf/apps/gnome-terminal
-	[[ -d ${HOMEDIR}/.gconf/desktop/gnome/peripherals/keyboard/kbd ]] \
-		|| mkdir -p ${HOMEDIR}/.gconf/desktop/gnome/peripherals/keyboard/kbd
-	[[ -d ${HOMEDIR}/.gconf/desktop/gnome/peripherals/keyboard/kbd.bak ]] \
-		|| cp -R ${HOMEDIR}/.gconf/desktop/gnome/peripherals/keyboard/kbd{,.bak}
-	rm -fr ${HOMEDIR}/.gconf/desktop/gnome/peripherals/keyboard/kbd
-	ln -s ${MAKEFDIR}gconf/desktop/gnome/peripherals/keyboard/kbd \
-		${HOMEDIR}/.gconf/desktop/gnome/peripherals/keyboard/kbd
-
-dconf:
-	mkdir -p dconf/.profiles
-	dconf list ${DCONF_TERM}/ \
-		| sed -n '/^:/s|:\(.*\)/|\1|p' \
-		| egrep -v \
-			'${DCONF_CUSTOM_TERM_PROFILE1}|${DCONF_CUSTOM_TERM_PROFILE2}' \
-			> dconf/.profiles/list.txt || true
-	xargs -I {} -a dconf/.profiles/list.txt dconf dump ${DCONF_TERM}/:{}/ \
-		> dconf/.profiles/profile.dconf
-	dconf load ${DCONF_DARK_EMERALD} < dconf/dark_emerald_terminal.dconf
-	dconf load ${DCONF_MILKY} < dconf/milky_terminal.dconf
-	dconf write ${DCONF_TERM}/list "['${DCONF_CUSTOM_TERM_PROFILE1}', '${DCONF_CUSTOM_TERM_PROFILE2}']"
-	dconf write ${DCONF_TERM}/default "'${DCONF_CUSTOM_TERM_PROFILE1}'"
-
-dconf-dump:
-	dconf dump DCONF_DARK_EMERALD > dconf/dark_emerald_terminal.dconf
-	dconf dump DCONF_MILKY > dconf/milky_terminal.dconf
-
 docs:
 	mkdir -p ~/docs
 	wget ${PYTHON2} -O- | tar -xjvC ~/docs
@@ -207,8 +167,6 @@ pyenv:
     alacritty \
     bash \
     docs \
-    dconf \
-    gconf \
     git \
     icdiff \
     ipython \
