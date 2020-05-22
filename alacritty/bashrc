@@ -45,7 +45,8 @@ function _getvars() {
 function _notify_apps() {
     # Notify vim
     vim --serverlist | grep -i nurono | xargs -I SRVNAME \
-        vim --servername SRVNAME --remote-send ":source $VIM_DEFAULT_THEME<CR>"
+        vim --servername SRVNAME \
+            --remote-send "<ESC>:source $VIM_DEFAULT_THEME<CR>"
 
     # Update tmux conf
     tmux source-file ~/.tmux/dotfiles/$BACKGROUND
