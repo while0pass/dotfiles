@@ -112,7 +112,7 @@ tmux:
 	fi
 
 tmuxp:
-	$(MAKE) -C ../dotfiles-tmuxp
+	$(MAKE) -C ../dotenvs
 
 icdiff:
 	sudo wget ${ICDIFF_URL}/icdiff -O /usr/local/bin/icdiff
