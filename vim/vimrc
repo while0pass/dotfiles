@@ -69,7 +69,9 @@ call plug#begin('~/.vim/plugged')
 
     """""""" SYNTAX HIGHLIGHTING """"""""
 
+    Plug 'othree/html5.vim', {'for': ['html', 'svg']}
     Plug 'othree/yajs.vim', {'for': 'javascript'}
+    Plug 'HerringtonDarkholme/yats.vim', {'for': 'typescript'}
     Plug 'vim-scripts/vim-stylus', {'for': 'stylus'}
     Plug 'Glench/Vim-Jinja2-Syntax'
     Plug 'rust-lang/rust.vim'
@@ -84,16 +86,22 @@ call plug#begin('~/.vim/plugged')
     " 256-color schemes
     "Plug 'godlygeek/csapprox'
     Plug 'vim-scripts/3DGlasses.vim'
+    Plug 'vim-scripts/autumnleaf_modified.vim'
     Plug 'fugalh/desert.vim'
-    Plug 'vim-scripts/wombat256.vim'
-    Plug 'altercation/vim-colors-solarized'
-    Plug 'chriskempson/vim-tomorrow-theme'
+    Plug 'vim-scripts/ironman.vim'
     Plug 'nanotech/jellybeans.vim'
-    Plug 'junegunn/seoul256.vim'
-    Plug 'trevordmiller/nova-vim'
     Plug 'arcticicestudio/nord-vim'
-    Plug 'nightsense/vimspectr'
+    Plug 'trevordmiller/nova-vim'
+    Plug 'vim-scripts/nuvola.vim'
+    Plug 'mhartington/oceanic-next'
+    Plug 'vim-scripts/oceanlight'
+    Plug 'junegunn/seoul256.vim'
+    Plug 'vim-scripts/summerfruit256.vim'
+    Plug 'altercation/vim-colors-solarized'
     Plug 'rakr/vim-one'
+    Plug 'nightsense/vimspectr'
+    Plug 'chriskempson/vim-tomorrow-theme'
+    Plug 'vim-scripts/wombat256.vim'
 
     """""""" OTHERS """"""""
 

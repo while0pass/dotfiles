@@ -1,0 +1,13 @@
+sudo apt update
+sudo apt -y upgrade
+sudo apt -y autoremove
+
+sudo snap refresh
+
+~/.tmux/plugins/tpm/bin/clean_plugins
+~/.tmux/plugins/tpm/bin/update_plugins
+~/.tmux/plugins/tpm/bin/install_plugins
+
+python -m pip install -U pip pipenv tmuxp
+
+vim +PlugUpgrade\|PlugClean\|PlugUpdate\|PlugInstall\|qa

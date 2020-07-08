@@ -162,6 +162,10 @@ pyenv:
 		git clone https://github.com/pyenv/pyenv.git ${PYENV_ROOT}; \
 	fi
 
+update:
+	git pull origin master
+	./update.sh
+
 .PHONY: \
     4nc \
     alacritty \
@@ -175,5 +179,6 @@ pyenv:
     pyenv \
     tmux \
     tmuxp \
+    update \
     vim \
     xneur
