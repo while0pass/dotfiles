@@ -10,6 +10,6 @@ sudo snap refresh
 
 python -m pip install -U pip pipenv tmuxp
 
-vim +PlugUpgrade\|PlugClean\|PlugUpdate\|PlugInstall\|qa
+vim +PlugUpgrade\|PlugClean\!\|PlugUpdate\|PlugInstall\|qa
 
 rustup update
