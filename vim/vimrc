@@ -77,7 +77,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'rust-lang/rust.vim'
     Plug 'saltstack/salt-vim'
     Plug 'hail2u/vim-css3-syntax'
-    Plug 'lervag/vimtex'
+    Plug 'lervag/vimtex' | let g:tex_flavor = 'latex'
 
     " Подсветка литералов цвета соответствующим цветом
     "Plug 'lilydjwg/colorizer',
