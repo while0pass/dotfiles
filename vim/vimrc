@@ -116,6 +116,7 @@ call plug#begin('~/.vim/plugged')
     "Plug 'tomtom/quickfixsigns_vim'
     Plug 'junegunn/limelight.vim', {'on': 'Goyo'}
     Plug 'junegunn/goyo.vim', {'on': 'Goyo'} | runtime vimrc.d/goyo
+    Plug '42og/stdheader.vim', {'on': 'Stdheader'}
 
     " Filetree
     Plug 'scrooloose/nerdtree' | Plug 'jistr/vim-nerdtree-tabs'
