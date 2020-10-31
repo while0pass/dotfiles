@@ -27,6 +27,9 @@ source $HOME/repogitories/dotfiles/alacritty/bashrc
 # Автокомплит для pipenv
 source $HOME/repogitories/dotfiles/pipenv/bashrc
 
+# Настройки для школы 42\21
+source $HOME/repogitories/dotfiles/42/zshrc
+
 
 ###############  Важно!!!  ######################
 # Этот фрагмент должен обязательно идти         #

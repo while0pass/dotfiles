@@ -1,0 +1,14 @@
+export USER=dpowdere
+export MAIL=dpowdere@student.21-school.ru
+
+alias norm="~/norm.sh"
+alias gcx="gcc -Wall -Wextra -Werror"
+alias gcg="gcc -Wall -Wextra -Werror -g"
+
+# Load Homebrew config script
+if [ -e $HOME/.brewconfig.zsh ]
+then
+    source $HOME/.brewconfig.zsh
+    export PATH=/Users/dpowdere/.brew/opt/ruby/bin/:$PATH
+    export PATH=/Users/dpowdere/.brew/lib/ruby/gems/2.7.0/bin:$PATH
+fi
