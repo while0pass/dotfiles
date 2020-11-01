@@ -53,6 +53,42 @@ function same_output() {
     echo "'"
 }
 
+function diff_output() {
+    sed -n -e 1p $2
+    printf $'\x1b[33m'
+    printf '!'
+    printf $'\x1b[0m'
+    printf " Diff compared to '"
+    printf "$(sed -n -e '1{s/\x1b\[[0-9;]*m//g;p}' $1)"
+    echo "'"
+    python <(__py_diff) $1 $2
+}
+
+function py_sort() {
+    python <(__py_sort)
+}
+
+function show_if() {
+    echo
+    if [ -z "$(diff <(sed -n -e '1!p' $1) <(sed -n -e '1!p' $2))" ]
+    then
+        same_output $1 $2
+    else
+        diff_output $1 $2
+    fi
+    echo
+    if [ -z "$(diff <(sed -n -e '1!p' $1) <(sed -n -e '1!p' $3))" ]
+    then
+        same_output $1 $3
+    elif [ -z "$(diff <(sed -n -e '1!p' $2) <(sed -n -e '1!p' $3))" ]
+    then
+        same_output $2 $3
+    else
+        diff_output $2 $3
+    fi
+    echo
+}
+
 function __py_sort() {
     cat << EOF
 
@@ -101,7 +137,8 @@ function __py_diff() {
 import sys
 
 PAT = 'Norme: '
-COLOR = '\x1b[31m'
+RED = '\x1b[31m'
+GREEN = '\x1b[32m'
 RESET = '\x1b[0m'
 
 def structext(lines):
@@ -123,17 +160,24 @@ lines1 = structext(open(sys.argv[1]).readlines())
 lines2 = structext(open(sys.argv[2]).readlines())
 for line1, line2 in zip(lines1, lines2):
     assert line1[0] == line2[0]
-    sys.stdout.write(line2[0])
+    sys.stdout.write(line2[0].rstrip())
     i1 = i2 = 0
     ls1, ls2 = line1[1], line2[1]
+    diff = False
     while i1 < len(ls1) or i2 < len(ls2):
         if i1 >= len(ls1):
-            line = '{}+{}{}'.format(COLOR, RESET, ls2[i2][1:])
+            if not diff:
+                sys.stdout.write('\n')
+                diff = True
+            line = '{}+{}{}'.format(RED, RESET, ls2[i2][1:])
             sys.stdout.write(line)
             i2 += 1
             continue
         if i2 >= len(ls2):
-            line = '{}-{}{}'.format(COLOR, RESET, ls1[i1][1:])
+            if not diff:
+                sys.stdout.write('\n')
+                diff = True
+            line = '{}-{}{}'.format(RED, RESET, ls1[i1][1:])
             sys.stdout.write(line)
             i1 += 1
             continue
@@ -144,46 +188,24 @@ for line1, line2 in zip(lines1, lines2):
         try:
             ix = ls2.index(ls1[i1])
         except ValueError:
-            line = '{}-{}{}'.format(COLOR, RESET, ls1[i1][1:])
+            if not diff:
+                sys.stdout.write('\n')
+                diff = True
+            line = '{}-{}{}'.format(RED, RESET, ls1[i1][1:])
             sys.stdout.write(line)
             i1 += 1
         else:
+            if not diff:
+                sys.stdout.write('\n')
+                diff = True
             for line in ls2[i2:ix]:
-                line = '{}+{}{}'.format(COLOR, RESET, line[1:])
+                line = '{}+{}{}'.format(RED, RESET, line[1:])
                 sys.stdout.write(line)
             i1 += 1
             i2 = ix + 1
+    if not diff:
+        sys.stdout.write(' {}={}\n'.format(GREEN, RESET))
 EOF
-}
-
-function diff_output() {
-    sed -n -e 1p $2
-    python <(__py_diff) $1 $2
-}
-
-function py_sort() {
-    python <(__py_sort)
-}
-
-function show_if() {
-    echo
-    if [ -z "$(diff <(sed -n -e '1!p' $1) <(sed -n -e '1!p' $2))" ]
-    then
-        same_output $1 $2
-    else
-        diff_output $1 $2
-    fi
-    echo
-    if [ -z "$(diff <(sed -n -e '1!p' $1) <(sed -n -e '1!p' $3))" ]
-    then
-        same_output $1 $3
-    elif [ -z "$(diff <(sed -n -e '1!p' $2) <(sed -n -e '1!p' $3))" ]
-    then
-        same_output $2 $3
-    else
-        diff_output $2 $3
-    fi
-    echo
 }
 
 echo
