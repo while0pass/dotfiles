@@ -1,25 +1,24 @@
 #!/bin/bash
 TMPFILE=$(mktemp)
-if [ $# == 0 ] || [ $# == 1 ] && [ -d "$1" ]
-then
-    if [ $# == 1 ] && [ -d "$1" ]
-    then
-        DIR=$1
-    else
-        DIR=./
-    fi
-    find $DIR -name '*.[ch]' | sort >$TMPFILE
-else
-    echo $@ >$TMPFILE
-fi
-for f in $(xargs -a $TMPFILE echo)
+for f in $@
 do
     if ! [ -e "$f" ]
     then
-        echo Path "'"$f"'" does not exist
-        exit 1
+        printf "Path '%s' does not exist\n" $f
+    else
+        f=$(realpath $f)
+        if [ -d "$f" ]
+        then
+            find $f -name '*.[ch]' >>$TMPFILE
+        else
+            echo $f >>$TMPFILE
+        fi
     fi
 done
+
+sort -u -o $TMPFILE $TMPFILE
+sed -e "s:^$PWD/::" -i'' $TMPFILE
+
 if [ $(cat $TMPFILE | wc -m) == 0 ] && [ $# -ge 1 ]
 then
     echo No files found
