@@ -1,0 +1,10 @@
+set colorcolumn=80
+set noexpandtab
+set tabstop=4
+
+set comments=sr:/*,m:**,ex:*/
+set listchars=tab:▒░,trail:▓
+set list
+
+colorscheme desert
+syntax on
