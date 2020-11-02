@@ -1,5 +1,8 @@
 #!/bin/bash
 TMPFILE=$(mktemp)
+ERRLOG=$(mktemp)
+exec 2>$ERRLOG
+
 for f in $@
 do
     if ! [ -e "$f" ]
@@ -143,10 +146,10 @@ RESET = '\x1b[0m'
 def structext(lines):
     lines = lines[1:]
     x = []
-    for line in lines:
+    for i, line in enumerate(lines):
         if not line.strip():
             continue
-        if PAT in line:
+        if i == 0 or PAT in line:
             filepath = line
             errors = []
             x.append((filepath, errors))
@@ -158,7 +161,10 @@ def structext(lines):
 lines1 = structext(open(sys.argv[1]).readlines())
 lines2 = structext(open(sys.argv[2]).readlines())
 for line1, line2 in zip(lines1, lines2):
-    assert line1[0] == line2[0]
+    assert PAT in line2[0], (
+        "Norminett's output does not start with 'Norme: ' signature")
+    assert line1[0] == line2[0], (
+        "Cannot compare different file lists")
     sys.stdout.write(line2[0].rstrip())
     i1 = i2 = 0
     ls1, ls2 = line1[1], line2[1]
@@ -215,4 +221,8 @@ show_errors norminette -R CheckDefine | py_sort >.norm1
 show_errors norminette | py_sort >.norm2
 show_if .norm0 .norm1 .norm2
 
-rm -f $TMPFILE .norm{0..2}
+echo $'\x1b[31;1m'stderr:$'\x1b[0m\x1b[31m'
+cat $ERRLOG
+echo $'\x1b[0m'
+
+rm -f $TMPFILE $ERRLOG .norm{0..2}
