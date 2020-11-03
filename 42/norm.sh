@@ -221,8 +221,11 @@ show_errors norminette -R CheckDefine | py_sort >.norm1
 show_errors norminette | py_sort >.norm2
 show_if .norm0 .norm1 .norm2
 
-echo $'\x1b[31;1m'stderr:$'\x1b[0m\x1b[31m'
-cat $ERRLOG
-echo $'\x1b[0m'
+if [ $(stat -c '%s' $ERRLOG) -gt 0 ]
+then
+	echo $'\x1b[31;1m'stderr:$'\x1b[0m\x1b[31m'
+	cat $ERRLOG
+	echo $'\x1b[0m'
+fi
 
 rm -f $TMPFILE $ERRLOG .norm{0..2}
