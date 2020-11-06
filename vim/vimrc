@@ -144,9 +144,7 @@ set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNO
 "" https://github.com/junegunn/goyo.vim/issues/200
 
 " colors
-if !exists("g:syntax_on")
-    syntax enable
-endif
+syntax enable
 source ~/.vim/vimrc.d/colors/.default
 
 " Run server to react to changes in color themes
