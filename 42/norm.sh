@@ -7,7 +7,7 @@
 #    By: dpowdere <dpowdere@student.21-school.ru>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/04 16:57:16 by dpowdere          #+#    #+#              #
-#    Updated: 2020/11/04 16:57:16 by dpowdere         ###   ########.fr        #
+#    Updated: 2020/11/06 23:59:36 by dpowdere         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -152,6 +152,7 @@ import sys
 
 PAT = 'Norme: '
 RED = '\x1b[31m'
+BOLDRED = '\x1b[31;1m'
 GREEN = '\x1b[32m'
 RESET = '\x1b[0m'
 
@@ -221,7 +222,11 @@ for line1, line2 in zip(lines1, lines2):
             i1 += 1
             i2 = ix + 1
     if not diff:
-        sys.stdout.write(' {}={}\n'.format(GREEN, RESET))
+        if ls1 or ls2:
+            COLOR = BOLDRED
+        else:
+            COLOR = GREEN
+        sys.stdout.write(' {}={}\n'.format(COLOR, RESET))
 EOF
 }
 
