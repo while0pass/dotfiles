@@ -7,12 +7,14 @@
 #    By: dpowdere <dpowdere@student.21-school.ru>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/04 16:57:16 by dpowdere          #+#    #+#              #
-#    Updated: 2020/11/06 23:59:36 by dpowdere         ###   ########.fr        #
+#    Updated: 2020/11/10 15:15:18 by dpowdere         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 TMPFILE=$(mktemp)
 ERRLOG=$(mktemp)
+NRMLOG=.norminette_raw_output
+echo >$NRMLOG
 exec 2>$ERRLOG
 
 for f in $@
@@ -40,9 +42,14 @@ then
     exit 1
 fi
 
+printf $'\x1b[38;5;247m'
+printf "Raw norminette's output can be found in '$NRMLOG' file."
+echo $'\x1b[0m'
+
 function show_errors() {
+    echo $* >> $NRMLOG
     echo $'\x1b[1m'$*$'\x1b[0m'
-    xargs -a $TMPFILE $@ | sed -e '
+    xargs -a $TMPFILE $@ | tee -a $NRMLOG | sed -e '
         /^Norme:/{
             s/^\(Norme: \)\(.*\)$/  \1\x1b[33m\2\x1b[0m/;
         };
@@ -55,6 +62,7 @@ function show_errors() {
         };
         '
     echo
+    echo >>$NRMLOG
 }
 
 function same_output() {
@@ -230,9 +238,12 @@ for line1, line2 in zip(lines1, lines2):
 EOF
 }
 
+printf $'\x1b[38;5;247m'
+echo "Files to be checked for norm errors:"
 echo
-cat $TMPFILE
-echo
+cat $TMPFILE | sed -e 's/^/  /'
+echo $'\x1b[0m'
+
 show_errors norminette -R CheckForbiddenSourceHeader | py_sort | tee .norm0
 show_errors norminette -R CheckDefine | py_sort >.norm1
 show_errors norminette | py_sort >.norm2
