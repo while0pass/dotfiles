@@ -501,13 +501,18 @@ key_bindings:
   #- { key: Add,      mods: Control,       action: IncreaseFontSize }
   #- { key: Subtract, mods: Control,       action: DecreaseFontSize }
   #- { key: Minus,    mods: Control,       action: DecreaseFontSize }
+  - key: F11
+    action: ToggleFullscreen
   - key: Key0
     mods: Control
     command:
       program: 'bash'
       args:
         - '-c'
-        - 'cd ~/repogitories/dotfiles/alacritty; source bashrc; _set_default_fontsize; _set_default_theme'
+        - >-
+          cd ~/repogitories/dotfiles/alacritty;
+          source bashrc; _set_default_fontsize;
+          _set_default_theme
   - key: Add
     mods: Control
     command:
