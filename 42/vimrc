@@ -1,10 +1,18 @@
+source ~/stdheader.myvim
+
+set nu
 set colorcolumn=80
 set noexpandtab
 set tabstop=4
-
-set comments=sr:/*,m:**,ex:*/
+"set shiftwidth=4
 set listchars=tab:▒░,trail:▓
 set list
 
-colorscheme desert
-syntax on
+augroup override2142
+	autocmd!
+    autocmd BufRead,BufNewFile *.h set filetype=c
+	autocmd Filetype c set comments=sl:/*,mb:**,elx:*/
+augroup END
+
+"colorscheme desert
+"syntax on

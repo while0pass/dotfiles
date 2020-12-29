@@ -166,3 +166,11 @@ nmap gb :buffers<CR>
 " Add hyphen to the list of characters identified as word characters
 " for *.css, *.html, *.xml
 au FileType css\|html\|xml setlocal iskeyword+=-
+
+augroup override2142
+    au!
+    au BufRead,BufNewFile *.h set filetype=c
+    au Filetype c set comments=sl:/*,mb:**,elx:*/
+    au Filetype c set noexpandtab
+    au Filetype c set tabstop=4
+augroup END
