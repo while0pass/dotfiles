@@ -12,3 +12,6 @@ then
     export PATH=/Users/dpowdere/.brew/opt/ruby/bin/:$PATH
     export PATH=/Users/dpowdere/.brew/lib/ruby/gems/2.7.0/bin:$PATH
 fi
+
+# Add Visual Studio Code (code)
+export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
