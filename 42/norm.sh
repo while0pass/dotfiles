@@ -14,6 +14,7 @@
 TMPFILE=$(mktemp)
 ERRLOG=$(mktemp)
 NRMLOG=.norminette_raw_output
+SYSTEM=$(uname)
 echo >$NRMLOG
 exec 2>$ERRLOG
 
@@ -23,7 +24,7 @@ do
     then
         printf "Path '%s' does not exist\n" $f
     else
-        f=$(realpath $f)
+        f=$(cd $(dirname $f); pwd)/$(basename $f)
         if [ -d "$f" ]
         then
             find $f -name '*.[ch]' >>$TMPFILE
@@ -33,8 +34,8 @@ do
     fi
 done
 
-sort -u -o $TMPFILE $TMPFILE
-sed -e "s:^$PWD/::" -i'' $TMPFILE
+sort -u $TMPFILE | sed -e "s:^$PWD/::" >${TMPFILE}.2
+mv ${TMPFILE}.2 $TMPFILE
 
 if [ $(cat $TMPFILE | wc -m) == 0 ] && [ $# -ge 1 ]
 then
@@ -49,16 +50,15 @@ echo $'\x1b[0m'
 function show_errors() {
     echo $* >> $NRMLOG
     echo $'\x1b[1m'$*$'\x1b[0m'
-    xargs -a $TMPFILE $@ | tee -a $NRMLOG | sed -e '
+    cat $TMPFILE | xargs $@ | tee -a $NRMLOG | sed -e '
         /^Norme:/{
-            s/^\(Norme: \)\(.*\)$/  \1\x1b[33m\2\x1b[0m/;
+            s/^\(Norme:\s*\)\(.*\)$/  \1'$'\x1b[33m''\2'$'\x1b[0m''/;
         };
         /^Error/{
-            s/^\(Error: \)\(.*\)$/    \1\x1b[31m\2\x1b[0m/g;
-            s/^\(Error ([^)]\+): \)\(.*\)$/    \1\x1b[31m\2\x1b[0m/g;
+            s/^\(Error[^:]*:\s*\)\(.*\)$/    \1'$'\x1b[31m''\2'$'\x1b[0m''/;
         };
         /^Warning/{
-            s/^\(Warning: \)\(.*\)$/    \1\x1b[34m\2\x1b[0m/g;
+            s/^\(Warning[^:]*:\s*\)\(.*\)$/    \1'$'\x1b[34m''\2'$'\x1b[0m''/;
         };
         '
     echo
@@ -71,7 +71,7 @@ function same_output() {
     printf "="
     printf $'\x1b[0m'
     printf " Same output as for '"
-    printf "$(sed -n -e '1{s/\x1b\[[0-9;]*m//g;p}' $1)"
+    sed -n -e 1p $1 | sed -e $'s/\x1b''\[[0-9;]*m//g' | tr -d '\n'
     echo "'"
 }
 
@@ -81,13 +81,15 @@ function diff_output() {
     printf '!'
     printf $'\x1b[0m'
     printf " Diff compared to '"
-    printf "$(sed -n -e '1{s/\x1b\[[0-9;]*m//g;p}' $1)"
+    sed -n -e 1p $1 | sed -e $'s/\x1b''\[[0-9;]*m//g' | tr -d '\n'
     echo "'"
-    python <(__py_diff) $1 $2
+    #nl -b a <(__py_diff) >&2
+    python3 <(__py_diff) $1 $2
 }
 
 function py_sort() {
-    python <(__py_sort)
+    #nl -b a <(__py_sort) >&2
+    python3 <(__py_sort)
 }
 
 function show_if() {
@@ -117,7 +119,7 @@ function __py_sort() {
 import sys
 import re
 
-PAT = 'Norme: '
+PAT = 'Norme:'
 
 def structext(lines):
     x = []
@@ -158,7 +160,7 @@ function __py_diff() {
 
 import sys
 
-PAT = 'Norme: '
+PAT = 'Norme:'
 RED = '\x1b[31m'
 BOLDRED = '\x1b[31;1m'
 GREEN = '\x1b[32m'
@@ -249,7 +251,18 @@ show_errors norminette -R CheckDefine | py_sort >.norm1
 show_errors norminette | py_sort >.norm2
 show_if .norm0 .norm1 .norm2
 
-if [ $(stat -c '%s' $ERRLOG) -gt 0 ]
+case $SYSTEM in
+    Darwin)
+        CHECK_FILESIZE="stat -c '%s'"
+        ;;
+    Linux)
+        CHECK_FILESIZE="stat -f '%z'"
+        ;;
+    *)
+        CHECK_FILESIZE="stat -c '%s'"
+        ;;
+esac
+if [ $($CHECK_FILESIZE $ERRLOG) -gt 0 ]
 then
 	echo $'\x1b[31;1m'stderr:$'\x1b[0m\x1b[31m'
 	cat $ERRLOG
