@@ -9,5 +9,8 @@
 [color]
     ui = true
 
-[url "http://github.com"]
-    insteadOf = git://github.com
+[url "git@dpowdere-github:dpowdere"]
+    insteadOf = git@github.com:dpowdere
+
+[includeIf "gitdir:~/repogitories/21/"]
+    path = ~/repogitories/21/.gitconfig
