@@ -15,6 +15,16 @@ TMPFILE=$(mktemp)
 ERRLOG=$(mktemp)
 NRMLOG=.norminette_raw_output
 SYSTEM=$(uname)
+SCRIPT_SHELL=$$
+
+BLUE=$'\x1b[34m'
+BOLD=$'\x1b[1m'
+BOLD_RED=$'\x1b[31;1m'
+GRAY=$'\x1b[38;5;247m'
+RED=$'\x1b[31m'
+RESET=$'\x1b[0m'
+YELLOW=$'\x1b[33m'
+
 echo >$NRMLOG
 exec 2>$ERRLOG
 
@@ -22,7 +32,7 @@ for f in $@
 do
     if ! [ -e "$f" ]
     then
-        printf "Path '%s' does not exist\n" $f
+        printf $RED"Path '%s' does not exist\n"$RESET $f
     else
         f=$(cd $(dirname $f); pwd)/$(basename $f)
         if [ -d "$f" ]
@@ -39,48 +49,51 @@ mv ${TMPFILE}.2 $TMPFILE
 
 if [ $(cat $TMPFILE | wc -m) == 0 ] && [ $# -ge 1 ]
 then
-    echo No files found
+    echo ${RED}No files found${RESET}
     exit 1
 fi
 
-printf $'\x1b[38;5;247m'
+printf $GRAY
 printf "Raw norminette's output can be found in '$NRMLOG' file."
-echo $'\x1b[0m'
+echo $RESET
+
+function no_connection() {
+	echo ${RED}No connection to Norminette server${RESET}
+	echo
+}
 
 function show_errors() {
     echo $* >> $NRMLOG
-    echo $'\x1b[1m'$*$'\x1b[0m'
-    cat $TMPFILE | xargs $@ | tee -a $NRMLOG | sed -e '
+    echo ${BOLD}$*${RESET}
+    cat $TMPFILE | xargs $@ |& tee -a $NRMLOG | sed -e '
         /^Norme:/{
-            s/^\(Norme:\s*\)\(.*\)$/  \1'$'\x1b[33m''\2'$'\x1b[0m''/;
+            s/^\(Norme:\s*\)\(.*\)$/  \1'${YELLOW}'\2'${RESET}'/;
         };
         /^Error/{
-            s/^\(Error[^:]*:\s*\)\(.*\)$/    \1'$'\x1b[31m''\2'$'\x1b[0m''/;
+            s/^\(Error[^:]*:\s*\)\(.*\)$/    \1'${RED}'\2'${RESET}'/;
         };
         /^Warning/{
-            s/^\(Warning[^:]*:\s*\)\(.*\)$/    \1'$'\x1b[34m''\2'$'\x1b[0m''/;
+            s/^\(Warning[^:]*:\s*\)\(.*\)$/    \1'${BLUE}'\2'${RESET}'/;
         };
         '
+    if [ ${PIPESTATUS[1]} != 0 ]
+    then
+        exit 1
+    fi
     echo
     echo >>$NRMLOG
 }
 
 function same_output() {
     sed -n -e 1p $2
-    printf $'\x1b[33m'
-    printf "="
-    printf $'\x1b[0m'
-    printf " Same output as for '"
+    printf ${YELLOW}'='${RESET}" Same output as for '"
     sed -n -e 1p $1 | sed -e $'s/\x1b''\[[0-9;]*m//g' | tr -d '\n'
     echo "'"
 }
 
 function diff_output() {
     sed -n -e 1p $2
-    printf $'\x1b[33m'
-    printf '!'
-    printf $'\x1b[0m'
-    printf " Diff compared to '"
+    printf ${YELLOW}'!'${RESET}" Diff compared to '"
     sed -n -e 1p $1 | sed -e $'s/\x1b''\[[0-9;]*m//g' | tr -d '\n'
     echo "'"
     #nl -b a <(__py_diff) >&2
@@ -162,7 +175,7 @@ import sys
 
 PAT = 'Norme:'
 RED = '\x1b[31m'
-BOLDRED = '\x1b[31;1m'
+BOLD_RED = '\x1b[31;1m'
 GREEN = '\x1b[32m'
 RESET = '\x1b[0m'
 
@@ -233,22 +246,25 @@ for line1, line2 in zip(lines1, lines2):
             i2 = ix + 1
     if not diff:
         if ls1 or ls2:
-            COLOR = BOLDRED
+            COLOR = BOLD_RED
         else:
             COLOR = GREEN
         sys.stdout.write(' {}={}\n'.format(COLOR, RESET))
 EOF
 }
 
-printf $'\x1b[38;5;247m'
+printf $GRAY
 echo "Files to be checked for norm errors:"
 echo
 cat $TMPFILE | sed -e 's/^/  /'
-echo $'\x1b[0m'
+echo $RESET
 
 show_errors norminette -R CheckForbiddenSourceHeader | py_sort | tee .norm0
+test ${PIPESTATUS[0]} != 0 && no_connection && exit 1
 show_errors norminette -R CheckDefine | py_sort >.norm1
+test ${PIPESTATUS[0]} != 0 && no_connection && exit 1
 show_errors norminette | py_sort >.norm2
+test ${PIPESTATUS[0]} != 0 && no_connection && exit 1
 show_if .norm0 .norm1 .norm2
 
 case $SYSTEM in
@@ -264,9 +280,9 @@ case $SYSTEM in
 esac
 if [ $($CHECK_FILESIZE $ERRLOG) -gt 0 ]
 then
-	echo $'\x1b[31;1m'stderr:$'\x1b[0m\x1b[31m'
-	cat $ERRLOG
-	echo $'\x1b[0m'
+    echo ${BOLD_RED}stderr:${RESET}${RED}
+    cat $ERRLOG
+    echo $RESET
 fi
 
 rm -f $TMPFILE $ERRLOG .norm{0..2}
