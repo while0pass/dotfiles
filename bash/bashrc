@@ -14,12 +14,12 @@ export EDITOR=vi
 
 # Возоможность исполнять файлы из вселенной rust
 source $HOME/.cargo/env
-
-# Возоможность исполнять файлы из пакетов yarn
-test -n "$(which yarn)" && export PATH="$(yarn global bin):$PATH"
-
 # Возможность исполнять файлы из pip-пакетов
-export PATH="$(python -m site --user-base)/bin:$PATH"
+export PATH=$PATH:$(python -m site --user-base)/bin
+# Возоможность исполнять файлы из пакетов yarn
+test -n "$(which yarn)" && export PATH=$PATH:$(yarn global bin)
+# Возможность исполнять файлы, скомпилированные и установленные go
+test -n "$(which go)" && export PATH=$PATH:$(go env GOPATH)/bin
 
 # Средства быстрого изменения цветовой темы окружения
 source $HOME/repogitories/dotfiles/alacritty/bashrc
