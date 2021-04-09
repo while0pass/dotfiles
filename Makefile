@@ -163,7 +163,7 @@ pyenv:
 	fi
 
 update:
-	git pull origin master
+	-git pull origin master
 	./update.sh
 
 .PHONY: \
