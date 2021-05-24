@@ -13,3 +13,4 @@ python -m pip install -U pip pipenv tmuxp norminette
 vim +PlugUpgrade\|PlugClean\!\|PlugUpdate\|PlugInstall\|qa
 
 rustup update
+cargo install alacritty
