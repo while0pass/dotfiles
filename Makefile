@@ -164,6 +164,7 @@ pyenv:
 
 update:
 	-git pull origin master
+	-test -e ../dotenvs && git --work-tree=../dotenvs pull origin master || true
 	./update.sh
 
 .PHONY: \
