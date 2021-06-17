@@ -21,17 +21,18 @@ test -n "$(which go)" && export PATH=$PATH:$(go env GOPATH)/bin
 # Включение liquidprompt только для интерактивных оболочек
 if [[ $- = *i* ]]
 then
-    LP=~/.liquidprompt/liquidprompt
+    export LP=~/.liquidprompt/liquidprompt
 
     # Средства быстрого изменения цветовой темы окружения
-    R1=$HOME/repogitories/dotfiles/alacritty/bashrc
+    export R1=$HOME/repogitories/dotfiles/alacritty/bashrc
 
     # Автокомплит для pipenv
-    R2=$HOME/repogitories/dotfiles/pipenv/bashrc
+    export R2=$HOME/repogitories/dotfiles/pipenv/bashrc
 
     # Настройки для школы 42\21
-    R3=$HOME/repogitories/dotfiles/42/zshrc
+    export R3=$HOME/repogitories/dotfiles/42/zshrc
 
     # Выполнение всех скриптов одним махом для ускорения всего процесса
-    cat $LP $R1 $R2 $R3 | source
+    source <(cat $LP $R1 $R2 $R3)
+    unset LP R1 R2 R3
 fi
