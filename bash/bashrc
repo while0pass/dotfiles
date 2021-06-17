@@ -1,9 +1,6 @@
 # Поддержка 256-цветного режима в tmux
 [ -z "$TMUX" ] && export TERM=xterm-256color
 
-# Включение liquidprompt только для интерактивных оболочек
-[[ $- = *i* ]] && source ~/.liquidprompt/liquidprompt
-
 # Редактор по умолчанию
 export EDITOR=vi
 
@@ -21,19 +18,20 @@ test -n "$(which yarn)" && export PATH=$PATH:$(yarn global bin)
 # Возможность исполнять файлы, скомпилированные и установленные go
 test -n "$(which go)" && export PATH=$PATH:$(go env GOPATH)/bin
 
-# Средства быстрого изменения цветовой темы окружения
-source $HOME/repogitories/dotfiles/alacritty/bashrc
+# Включение liquidprompt только для интерактивных оболочек
+if [[ $- = *i* ]]
+then
+    LP=~/.liquidprompt/liquidprompt
 
-# Автокомплит для pipenv
-source $HOME/repogitories/dotfiles/pipenv/bashrc
+    # Средства быстрого изменения цветовой темы окружения
+    R1=$HOME/repogitories/dotfiles/alacritty/bashrc
 
-# Настройки для школы 42\21
-source $HOME/repogitories/dotfiles/42/zshrc
+    # Автокомплит для pipenv
+    R2=$HOME/repogitories/dotfiles/pipenv/bashrc
 
+    # Настройки для школы 42\21
+    R3=$HOME/repogitories/dotfiles/42/zshrc
 
-###############  Важно!!!  ######################
-# Этот фрагмент должен обязательно идти         #
-# в самом конце, чтобы pyenv работал правильно. #
-#################################################
-# Активация pyenv
-source $HOME/repogitories/dotfiles/pyenv/bashrc
+    # Выполнение всех скриптов одним махом для ускорения всего процесса
+    cat $LP $R1 $R2 $R3 | source
+fi
