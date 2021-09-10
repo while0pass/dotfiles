@@ -105,7 +105,6 @@ call plug#begin('~/.vim/plugged')
 
     """""""" OTHERS """"""""
 
-    Plug 'wakatime/vim-wakatime'
     Plug 'tmux-plugins/vim-tmux-focus-events'
     Plug 'editorconfig/editorconfig-vim'
     Plug 'tpope/vim-surround'
