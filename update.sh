@@ -12,6 +12,8 @@ python -m pip install -U pip pipenv tmuxp norminette
 
 vim +PlugUpgrade\|PlugClean\!\|PlugUpdate\|PlugInstall\|qa
 
+make liquidprompt
+
 rustup update
 ## alacritty dependencies on Ubuntu
 #sudo apt-get -y install \
