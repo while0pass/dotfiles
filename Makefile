@@ -1,9 +1,8 @@
 SHELL := /bin/bash
 HOMEDIR := $(shell echo ~)
 HASHMARK = \#
-MAKEFDIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
-ALACRI := ${MAKEFDIR}alacritty
-VIM := ${MAKEFDIR}vim
+ALACRI := ${CURDIR}/alacritty
+VIM := ${CURDIR}/vim
 LPPATH := ${HOMEDIR}/.liquidprompt
 ICDIFF_URL := https://raw.githubusercontent.com/jeffkaufman/icdiff/master
 PYTHON2 := https://docs.python.org/2.7/archives/python-2.7.18-docs-text.tar.bz2
@@ -32,7 +31,7 @@ define BASHRC_ADD
 cat <<EOF >>.tempbashrc
 
 # ${FINGERPRINT1}
-source ${MAKEFDIR}bash/bashrc
+source ${CURDIR}/bash/bashrc
 # ${FINGERPRINT2}
 EOF
 endef
@@ -40,7 +39,7 @@ export BASHRC_ADD
 
 4nc:
 	mkdir -p ${HOMEDIR}/.local/share/fonts
-	base64 -d ${MAKEFDIR}4nc/opp0821 | \
+	base64 -d ${CURDIR}/4nc/opp0821 | \
 		tar --lzma -C ${HOMEDIR}/.local/share/fonts/ -xf -
 	chmod 644 ${HOMEDIR}/.local/share/fonts/*.otf
 	fc-cache -fv
@@ -76,7 +75,7 @@ bash:
 git:
 	rm -fr ${HOMEDIR}/.config/git
 	rm -fr ${HOMEDIR}/.gitconfig
-	ln -s ${MAKEFDIR}git/config ${HOMEDIR}/.gitconfig
+	ln -s ${CURDIR}/git/config ${HOMEDIR}/.gitconfig
 
 vim:
 	rm -rf ${HOMEDIR}/.vim ${HOMEDIR}/.vimrc ${HOMEDIR}/.ctags
@@ -103,7 +102,7 @@ vim:
 tmux:
 	test ! -d ${HOMEDIR}/.tmux && mkdir -p ${HOMEDIR}/.tmux || true
 	test ! -h ${HOMEDIR}/.tmux/dotfiles && \
-		ln -sfT ${MAKEFDIR}tmux/ ${HOMEDIR}/.tmux/dotfiles || true
+		ln -sfT ${CURDIR}/tmux/ ${HOMEDIR}/.tmux/dotfiles || true
 	rm -fr ${HOMEDIR}/.tmux.conf
 	ln -sfT ${HOMEDIR}/.tmux/dotfiles/tmux.conf ${HOMEDIR}/.tmux.conf
 	if [ ! -e ${HOMEDIR}/.tmux/plugins/tpm ]; then \
@@ -122,12 +121,12 @@ icdiff:
 xneur:
 	rm -fr ${HOMEDIR}/.xneur
 	mkdir -p ${HOMEDIR}/.xneur
-	ln -s ${MAKEFDIR}xneur/xneurrc ${HOMEDIR}/.xneur/xneurrc
+	ln -s ${CURDIR}/xneur/xneurrc ${HOMEDIR}/.xneur/xneurrc
 
 ipython:
 	mkdir -p ${HOMEDIR}/.ipython
 	rm -fr ${HOMEDIR}/.ipython/extensions
-	ln -s ${MAKEFDIR}ipython/extensions ${HOMEDIR}/.ipython/extensions
+	ln -s ${CURDIR}/ipython/extensions ${HOMEDIR}/.ipython/extensions
 	rm -fr ${HOMEDIR}/.ipython/profile_default/
 	ipython profile create
 	patch ${HOMEDIR}/.ipython/profile_default/ipython_config.py \
@@ -143,8 +142,9 @@ liquidprompt:
 		git clone --depth=1 \
 			https://github.com/nojhan/liquidprompt.git ${LPPATH}; \
 	fi
-	cp ${HOMEDIR}/.liquidprompt/liquidpromptrc-dist \
+	ln -sf ${HOMEDIR}/.liquidprompt/liquidpromptrc-dist \
 		${HOMEDIR}/.config/liquidpromptrc
+	ln -sf ${CURDIR}/liquidprompt/liquidpromptrc ${HOMEDIR}/.liquidpromptrc
 
 pips:
 	sudo pip install -r packages/pip.list

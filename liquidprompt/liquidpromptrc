@@ -1,0 +1,4 @@
+LP_ENABLE_VIRTUALENV=0
+LP_PATH_LENGTH=20
+LP_PATH_METHOD="truncate_chars_from_path_left"
+LP_USER_ALWAYS=0
