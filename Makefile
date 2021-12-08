@@ -163,6 +163,7 @@ pyenv:
 	fi
 
 update:
+	@sudo -l >/dev/null 2>&1
 	-git pull origin master
 	-test -e ../dotenvs && \
 		git --work-tree=../dotenvs --git-dir=../dotenvs/.git \
