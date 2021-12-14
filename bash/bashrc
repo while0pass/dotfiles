@@ -26,13 +26,10 @@ then
     # Средства быстрого изменения цветовой темы окружения
     export R1=$HOME/repogitories/dotfiles/alacritty/bashrc
 
-    # Автокомплит для pipenv
-    export R2=$HOME/repogitories/dotfiles/pipenv/bashrc
-
     # Настройки для школы 42\21
-    export R3=$HOME/repogitories/dotfiles/42/zshrc
+    export R2=$HOME/repogitories/dotfiles/42/zshrc
 
     # Выполнение всех скриптов одним махом для ускорения всего процесса
-    source <(cat $LP $R1 $R2 $R3)
-    unset LP R1 R2 R3
+    source <(cat $LP $R1 $R2)
+    unset LP R1 R2
 fi

@@ -14,3 +14,5 @@
 
 [includeIf "gitdir:~/repogitories/21/"]
     path = ~/repogitories/21/.gitconfig
+[pull]
+	ff = only
