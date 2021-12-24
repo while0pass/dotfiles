@@ -10,7 +10,7 @@ set list
 
 augroup override2142
 	autocmd!
-    autocmd BufRead,BufNewFile *.h set filetype=c
+	autocmd BufRead,BufNewFile *.h set filetype=c
 	autocmd Filetype c set comments=sl:/*,mb:**,elx:*/
 augroup END
 
