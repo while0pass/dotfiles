@@ -66,6 +66,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'davidhalter/jedi-vim', {'for': 'python'} | runtime vimrc.d/jedivim
     Plug 'w0rp/ale' | runtime vimrc.d/ale
     Plug 'neoclide/coc.nvim', {'branch': 'release'} | runtime vimrc.d/coc
+    Plug 'quick-lint/quick-lint-js', {'rtp': 'plugin/vim/quick-lint-js.vim',
+                                    \ 'tag': '1.0.0'}
 
     """""""" SYNTAX HIGHLIGHTING """"""""
 
