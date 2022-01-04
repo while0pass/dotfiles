@@ -1,0 +1,42 @@
+snippet decl "Header file template for a class" b
+#pragma once
+#ifndef __${1/.*/\U$0\E/g}_H__
+# define __${1/.*/\U$0\E/g}_H__
+
+class ${1:ClassName}${2::${4: public} ${3:BaseClassName}}
+{${10:
+	private:
+		$11
+}${20:
+	protected
+		$21
+}
+	public:
+		~$1(void);
+		$1(void);
+		$1($1 const& other);
+		$1& operator=($1 const& other);$0
+};
+
+#endif
+endsnippet
+
+snippet impl "Implementation of a class"
+#include "$1.hpp"
+
+$1::$1(void)$0
+{
+}
+
+~$1::$1(void)
+{
+}
+
+$1::$1($1 const& other)
+{
+}
+
+$1& $1::operator=($1 const& other)
+{
+}
+endsnippet
