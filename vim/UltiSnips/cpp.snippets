@@ -22,13 +22,13 @@ class ${1:ClassName}${2::${4: public} ${3:BaseClassName}}
 endsnippet
 
 snippet impl "Implementation of a class"
-#include "$1.hpp"
+#include "${1:ClassName}.hpp"
 
-$1::$1(void)$0
+$1::~$1(void)
 {
 }
 
-~$1::$1(void)
+$1::$1(void)$0
 {
 }
 
