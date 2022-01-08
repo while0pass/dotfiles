@@ -2,6 +2,13 @@ snippet decl "Header file template for a class" b
 #pragma once
 #ifndef __${1/.*/\U$0\E/g}_H__
 # define __${1/.*/\U$0\E/g}_H__
+${5:# include <$6>$7
+}`!p
+if t[2]:
+    snip.rv = '# include "' + t[3] +'.hpp"'
+else:
+	snip.rv = ''
+`
 
 class ${1:ClassName}${2::${4: public} ${3:BaseClassName}}
 {${10:
@@ -22,6 +29,7 @@ class ${1:ClassName}${2::${4: public} ${3:BaseClassName}}
 endsnippet
 
 snippet impl "Implementation of a class"
+${2:#include <$3>$4}
 #include "${1:ClassName}.hpp"
 
 $1::~$1(void)
