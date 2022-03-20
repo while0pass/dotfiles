@@ -8,7 +8,15 @@ sudo snap refresh
 ~/.tmux/plugins/tpm/bin/update_plugins all
 ~/.tmux/plugins/tpm/bin/install_plugins
 
-python -m pip install -U pip pipenv tmuxp norminette
+python -m pip install -U \
+    colout \
+    httpie \
+    icdiff \
+    norminette \
+    pip \
+    pipenv \
+    tmuxp
+
 test -e "$(which conda)" && update --all --yes || true
 
 vim +PlugUpgrade\|PlugClean\!\|PlugUpdate\|PlugInstall\|qa
