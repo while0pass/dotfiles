@@ -2,6 +2,9 @@
 # Original file: default.yml
 
 matches:
+  - trigger: ":::espanso"
+    replace: https://espanso.org/docs/matches/basics/
+
   - trigger: ":date"
     replace: "{{mydate}}"
     vars:
@@ -9,6 +12,7 @@ matches:
         type: date
         params:
           format: "%d.%m.%Y"
+
   - trigger: ":shell"
     replace: "{{output}}"
     vars:
@@ -17,12 +21,10 @@ matches:
         params:
           cmd: echo Hello from your shell
 
-  - trigger: ":\"\""
+  - triggers: [':""', "ЖЭЭ"]
     form: "«[[quote]]»"
-  - trigger: ":<<"
+  - triggers: [":<<", "ЖББ"]
     replace: "«$|$»"
 
   - trigger: ":''"
-    form: '‘[[meaning]]’'
-  - trigger: ":://"
-    replace: ́
+    replace: '‘$|$’'
