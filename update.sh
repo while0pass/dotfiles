@@ -3,7 +3,7 @@ sudo apt-get -y upgrade
 sudo apt-get -y autoremove
 
 sudo snap refresh
-flatpak update
+flatpak update -y
 
 ~/.tmux/plugins/tpm/bin/clean_plugins
 ~/.tmux/plugins/tpm/bin/update_plugins all
