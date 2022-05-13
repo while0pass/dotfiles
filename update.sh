@@ -16,6 +16,7 @@ python -m pip install -U \
     norminette \
     pip \
     pipenv \
+    poetry \
     tmuxp
 
 test -e "$(which conda)" && update --all --yes || true
