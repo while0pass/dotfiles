@@ -34,4 +34,4 @@ rustup update
 #  libfontconfig1-dev \
 #  libxcb-xfixes0-dev \
 #  python3
-cargo install alacritty deno
+cargo install alacritty
