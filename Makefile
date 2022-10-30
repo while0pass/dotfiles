@@ -147,7 +147,7 @@ liquidprompt:
 	ln -sf ${CURDIR}/liquidprompt/liquidpromptrc ${HOMEDIR}/.liquidpromptrc
 
 pips:
-	sudo pip install -r packages/pip.list
+	sudo python -m pip install -r packages/pip.list
 
 docs:
 	mkdir -p ~/docs
