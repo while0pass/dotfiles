@@ -102,7 +102,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'vim-scripts/summerfruit256.vim'
     Plug 'altercation/vim-colors-solarized'
     Plug 'rakr/vim-one'
-    Plug 'nightsense/vimspectr'
+    Plug 'puremourning/vimspector'
+
     Plug 'chriskempson/vim-tomorrow-theme'
     Plug 'vim-scripts/wombat256.vim'
 
