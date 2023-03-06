@@ -28,3 +28,6 @@ matches:
 
   - trigger: ":''"
     replace: '‘$|$’'
+
+  - trigger: ":--"
+    replace: '—' # em dash
